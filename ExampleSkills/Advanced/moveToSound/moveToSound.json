@@ -1,0 +1,16 @@
+{
+	"Name": "moveToSound",
+	"UniqueId" : "b3582688-0d24-47b0-a840-96f66a532dc1",
+	"Description": "My skill is amazing!",
+	"StartupRules": ["Manual", "Robot"],
+	"Language": "javascript",
+	"BroadcastMode": "debug",
+	"TimeoutInSeconds": 36000,
+	"CleanupOnCancel": false,
+	"WriteToLog": false,
+	"Parameters": {
+		"int":10,
+		"double":20.5,
+		"string":"twenty"
+	}
+}

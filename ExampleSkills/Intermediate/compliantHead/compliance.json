@@ -1,0 +1,16 @@
+{
+	"Name": "compliance",
+	"UniqueId" : "2cd7b941-992f-4919-a930-bb96cf1204ff",
+	"Description": "My skill is amazing!",
+	"StartupRules": ["Manual", "Robot"],
+	"Language": "javascript",
+	"BroadcastMode": "debug",
+	"TimeoutInSeconds": 36000,
+	"CleanupOnCancel": false,
+	"WriteToLog": false,
+	"Parameters": {
+		"int":10,
+		"double":20.5,
+		"string":"twenty"
+	}
+}
