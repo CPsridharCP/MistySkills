@@ -1,0 +1,19 @@
+{
+  "Name": "blinkEyes",
+  "UniqueId": "6acf68a6-0ed3-4fd3-b19b-618166ffd76d",
+  "Description": "This skill makes Misty blink",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": false,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "Name": "lookAround",
+  "UniqueId": "f3522c3b-cb2d-4e07-a899-7276295e33d7",
+  "Description": "This skill makes Misty Randomly look around",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": false,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
