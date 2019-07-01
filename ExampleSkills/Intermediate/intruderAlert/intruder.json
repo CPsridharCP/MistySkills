@@ -1,0 +1,19 @@
+{
+  "Name": "intruder",
+  "UniqueId": "1e077870-0eff-4036-aa9e-e64366dfead3",
+  "Description": "Misty alerts you on finding an intruder",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "verbose",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": false,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
