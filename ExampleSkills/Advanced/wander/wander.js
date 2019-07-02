@@ -221,6 +221,11 @@ function _Bumped(data)
         } 
         else {}
     } 
+    else
+    {
+        misty.Stop();
+        misty.Set("inCorrecetion",false);
+    }
 }
 
 // -------------------------- Support Functions------------------------------------------------
