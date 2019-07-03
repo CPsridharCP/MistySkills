@@ -1,0 +1,19 @@
+{
+  "Name": "followFace",
+  "UniqueId": "53aefb13-d6b1-44e7-9403-41aacbbaa35b",
+  "Description": "Misty Tries to follow a human face using built-in face detection",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": false,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
