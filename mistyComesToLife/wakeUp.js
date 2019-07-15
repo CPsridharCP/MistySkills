@@ -1,9 +1,9 @@
-/******************
+/**********************************************************************
 Moving Misty's Head
 
 This part of Misty's Hello World tutorial teaches how to code
 Misty to move her head in a lifelike way.
-******************/
+**********************************************************************/
 
 // Sends a message to debug listeners
 misty.Debug("The HelloWorld skill is starting!")
@@ -34,44 +34,80 @@ function _look_around(repeat = true) {
         false);
 }
 
-// Registers for a timer event with called look_around, and invokes the
-// _look_around() callback every 5000 - 10000 milliseconds.
+// Registers for a timer event  called look_around, and invokes the
+// _look_around() callback after 5000 - 10000 milliseconds.
 misty.RegisterTimerEvent("look_around", getRandomInt(5, 10) * 1000, false);
 
-// // Breathing LED
+/**********************************************************************
+Changing Misty's LED
 
-// function _breathingLED() 
-// {
-//     var red = 140 / 10.0;
-//     var green = 0 / 10.0;
-//     var blue = 220 / 10.0;
-//     for (var i = 10; i >= 0; i = i - 1) 
-//     {
-//         misty.ChangeLED(Math.floor(i * red), Math.floor(i * green), Math.floor(i * blue));
-//         misty.Pause(50);
-//     }
-//     for (var i = 0; i <= 10; i = i + 1) 
-//     {
-//         misty.ChangeLED(0, Math.floor(i * 20), 0);
-//         misty.Pause(50);
-//     }
-//     misty.RegisterTimerEvent("breathingLED", 0, false);
-// }
-// misty.RegisterTimerEvent("breathingLED", 0, false);
+This part of Misty's Hello World tutorial teaches how to write code to
+have Misty's LED fade between green and yellow.
+**********************************************************************/
 
-// // Play an Audio File
+// The breathingLED timer event invokes this callback function.
+function _breathingLED() {
+    // Values used to modify the RGB intensity of Misty's chest LED.
+    // Change these to use a different starting color for the LED.
+    var red = 140 / 10.0;
+    var green = 0 / 10.0;
+    var blue = 220 / 10.0;
 
-// misty.PlayAudio("<file_name.wav>", 100);
-// misty.Pause(3000);
+    // Incrementally DECREASES the intensity of each color in the LED
+    for (var i = 10; i >= 0; i = i - 1) {
+        misty.ChangeLED(
+            Math.floor(i * red), // red intensity
+            Math.floor(i * green), // green intensity
+            Math.floor(i * blue)); // red intensity
+        // Pause before next iteration. Increase value for slower
+        // breathing; decrease for faster breathing.
+        misty.Pause(150);
+    }
 
-// // Driving Misty
+    // Incrementally INCREASES the intensity of each color in the LED
+    for (var i = 0; i <= 10; i = i + 1) {
+        misty.ChangeLED(
+            Math.floor(i * red), // red intensity
+            Math.floor(i * green), // green intensity
+            Math.floor(i * blue)); // blue intensity
+        // Pause before next iteration. Increase value for slower
+        // breathing; decrease for faster breathing.
+        misty.Pause(150);
+    }
+    // Re-registers for the breathingLED timer event, so Misty's LED
+    // continues breathing until the skill ends.
+    misty.RegisterTimerEvent("breathingLED", 1, false);
+}
 
-// misty.DriveTime(0, 30, 5000);
-// misty.Pause(5000);
-// misty.DriveTime(0, -30, 5000);
-// misty.Pause(5000);
+// Registers for a timer event called breathingLED, and invokes the
+// _breathingLED() callback after 1 millisecond.
+misty.RegisterTimerEvent("breathingLED", 1, false);
 
-// // Move Hands - Wave Hi
+/**********************************************************************
+Playing Sounds
+
+This part of Misty's Hello World tutorial teaches how to write code to
+have Misty play a sound
+**********************************************************************/
+
+// Plays an audio file at max volume.
+misty.PlayAudio("001-EeeeeeE.wav", 100);
+// Pauses for 3000 milliseconds before executing the next command.
+misty.Pause(3000);
+
+/**********************************************************************
+Driving Misty
+**********************************************************************/
+
+misty.DriveTime(0, 30, 5000);
+misty.Pause(5000);
+misty.DriveTime(0, -30, 5000);
+misty.Pause(5000);
+
+
+/**********************************************************************
+Moving Misty's Arms
+**********************************************************************/
 
 // misty.MoveArmPosition("left", 0, 45);
 // misty.Pause(50);
@@ -81,7 +117,9 @@ misty.RegisterTimerEvent("look_around", getRandomInt(5, 10) * 1000, false);
 // misty.Pause(5000);
 // misty.MoveArmPosition("right", 0, 45);
 
-// // Face Recognition
+/**********************************************************************
+Playing Sounds
+**********************************************************************/
 
 // function registerFaceRec() 
 // {
