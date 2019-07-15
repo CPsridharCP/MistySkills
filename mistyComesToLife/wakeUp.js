@@ -37,7 +37,7 @@ function _breathingLED()
     }
     for (var i = 0; i <= 10; i = i + 1) 
     {
-        misty.ChangeLED(0, Math.floor(i * 20), 0);
+        misty.ChangeLED(Math.floor(i * red), Math.floor(i * green), Math.floor(i * blue));
         misty.Pause(50);
     }
     misty.RegisterTimerEvent("breathingLED", 0, false);
