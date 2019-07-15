@@ -40,9 +40,9 @@ function _breathingLED()
         misty.ChangeLED(Math.floor(i * red), Math.floor(i * green), Math.floor(i * blue));
         misty.Pause(50);
     }
-    misty.RegisterTimerEvent("breathingLED", 0, false);
+    misty.RegisterTimerEvent("breathingLED", 10, false);
 }
-misty.RegisterTimerEvent("breathingLED", 0, false);
+misty.RegisterTimerEvent("breathingLED", 10, false);
 
 // Play an Audio File
 
