@@ -4,13 +4,13 @@ Welcome to the Misty Hello World tutorial series! These tutorials teach how to w
 
 ### Overview
 
-The Hello World tutorial series is divided into six parts:
+The Hello World tutorial series is divided into six parts.
 
 1. Moving Misty's Head
 2. Changing Misty's Chest LED
 3. Playing Sounds
 4. Driving Misty
-5. Moving Misty's Arms
+5. Teaching Misty to Wave
 6. Using Face Recognition
 
 The first section provides instructions on how to create and upload the files Misty needs to run a skill. As you progress through the series, you add new lines of code to the original skill file and update the skill on Misty to see how the additions change her behavior. When you finish all of the sections, you have a complete working Hello World skill for Misty.
@@ -39,7 +39,7 @@ function getRandomInt(min, max) {
 }
 ```
 
-Next, use the `misty.RegisterTimerEvent()` method to register for a new timed event. The syntax for this method is as follows:
+To issue any command to Misty in the local environment, we call methods on the `misty` object. Use the `misty.RegisterTimerEvent()` method to register for a new timed event. The syntax for this method is as follows:
 
 ```JavaScript
 // Syntax
@@ -368,3 +368,296 @@ Save your changes and use the Skill Runner to upload your modified `HelloWorld.j
 
 #### Driving Misty
 
+This part of the Hello World tutorial series teaches how to programmatically drive Misty. The code you write here will have Misty turn slowly to the left and to the right for a better view of her new home. If you started at the beginning of the Hello World series, you can add this code to the same `HelloWorld.js` code file you've been working on, beneath where you wrote the code for changing Misty's LED.
+
+**Important!** The code you write in this section of the tutorial activates Misty's drive motors. Make sure to place Misty on the ground before you run this code. **DO NOT** run this code while Misty is set on a high surface.
+
+**Note:** If Misty receives a `misty.DriveTime()` command while her treads are elevated (for example, while she's sitting on her foam block stand), she will perceive the lack of motion as a failure to accelerate, and her drive motors will accelerate for the specified duration until they reach max velocity.
+
+Misty's API includes many commands for controlling her movement and locomotion. To drive Misty in the Hello World tutorial, we use the `misty.DriveTime()` method. This method drives Misty forward or backward at a set speed, with a given rotation, for a specified amount of time (in milliseconds). The syntax is as follows:
+
+```JavaScript
+// Syntax
+misty.DriveTime(double linearVelocity, double angularVelocity, int timeMs, [double degree], [int prePauseMs], [int postPauseMs]);
+```
+
+**Tip:** The `misty.DriveTime()` argument expects the values used for `linearVelocity` and `angularVelocity` to be a percentage Misty's maximum velocity. When using the `misty.DriveTime()` method, it helps to understand how linear velocity (speed in a straight line) and angular velocity (speed and direction of rotation) work together:
+
+* If linear velocity is -100 and angular velocity is 0, Misty drives straight backward at full speed.
+* If linear velocity is 100 and angular velocity is 0, Misty drives straight forward at full speed.
+* If linear velocity is 0 and angular velocity is -100, Misty rotates clockwise at full speed.
+* If linear velocity is 0 and angular velocity is 100, Misty rotates counter-clockwise at full speed.
+* If linear velocity is not zero and angular velocity is not zero, Misty drives in a curve.
+
+In our Hello World skill, we want Misty to turn slowly counter-clockwise, then turn slowly clockwise. We do this with a sequence of `misty.DriveTime()`. We insert `misty.Pause()` commands after each call to `misty.DriveTime()` to prevent the next drive command from overriding the previous drive command before Misty has finished driving, and we call the `misty.Stop()` method to ensure Misty's drive motors stop at the end of the sequence.
+
+Copy the following lines of code into your `HelloWorld.js` skill file, beneath where you wrote the code to play audio:
+
+```JavaScript
+misty.DriveTime(0, 30, 5000); // Turns Misty to her left
+misty.Pause(5000); // Wait for turn to complete
+misty.DriveTime(0, -30, 5000); // Turns Misty to her right
+misty.Pause(5000); // Wait for turns to complete
+misty.Stop(); // Stops driving motors
+```
+
+To change the speed and distance that Misty turns, modify the `angularVelocity` and `timeMs` values in your `misty.DriveTime()` commands. Pass in a positive or negative value for `linearVelocity` to have Misty move forward or backward. We suggest starting at low speeds, like `30`/`-30`, and slowly incrementing these values to get a feel for how these numbers change Misty's speed.
+
+You're now ready to update your skill. Save your changes, and use the Skill Runner to upload your modified `HelloWorld.js` file to Misty. **Remove Misty from her foam block and set her on the floor, with both her treads firmly on the ground**. Start the skill to see Misty drive.
+
+#### Teaching Misty to Wave
+
+This part of the Hello World tutorial series teaches how to programmatically move Misty's arms. The code you write here will have Misty raise her right arm and wave after she completes her turn. If you started at the beginning of the Hello World series, you can add this code to the same `HelloWorld.js` code file you've been working on, beneath where you wrote the code for driving Misty.
+
+In this tutorial, we use the `misty.MoveArmPosition()` method to have Misty move her arms. This method takes arguments to specify which arm should move, a position between `0` (fully down) and `10` (fully up) the arm should move to, and how quickly the arm should move. The syntax for the `misty.MoveArmPosition()` method is as follows:
+
+```JavaScript
+// Syntax
+misty.MoveArmPosition(string arm, double position, double velocity, [int prePauseMs], [int postPauseMs])
+```
+
+To have Misty wave, we start by setting the position of both arms to `0`. We then send a command to move Misty's right arm fully up (wave), then pause before returning the arm to Misty's side. We wrap all this in a function called `waveRightArm()`, so we can use it later in the skill. 
+
+Copy the following into your `HelloWorld.js` skill code:
+
+```JavaScript
+// Waves Misty's right arm!
+function waveRightArm() {
+    misty.MoveArmPosition("left", 0, 45); // Left arm fully down
+    misty.Pause(50);
+    misty.MoveArmPosition("right", 0, 45); // Right arm fully down
+    misty.Pause(3000); // Pause for 3 seconds
+    misty.MoveArmPosition("right", 10, 45); // Right arm fully up
+    misty.Pause(5000); // Pause with arm up for 5 seconds (wave!)
+    misty.MoveArmPosition("right", 0, 45); // Right arm fully down
+}
+
+waveRightArm();
+```
+
+You're now ready to update your skill. Save your changes, and use the Skill Runner to upload your modified `HelloWorld.js` file to Misty. **Remove Misty from her foam block and set her on the floor, with both her treads firmly on the ground**. Start the skill to see Misty wave!
+
+#### Using Face Recognition
+
+This part of the Hello World tutorial series teaches how to use face recognition data in your skill code. The code you write here will have Misty start attempting to detect and recognize faces. If you've trained Misty on your own face, then Misty waves when she sees you. If Misty sees a person she doesn't know, she raises her eyebrows and plays a sound. If you haven't already trained Misty to recognize your face, use the Command Center to do so before working through this section of the tutorial.
+
+If you started at the beginning of the Hello World series, you can add this code to the same `HelloWorld.js` code file you've been working on, beneath where you wrote the code that taught Misty to wave.
+
+To begin, declare a function called `_registerFaceRed()`. We'll wrap the commands to start Misty looking for faces inside this function.
+
+```JavaScript
+// Invoke this function to start Misty recognizing faces.
+function _registerFaceRec() {
+
+}
+```
+
+We call the `misty.StartFaceRecognition()` method to start Misty's face recognition process. Copy this function (along with a call to `misty.StopFaceRecognition()`, to cancel any face recognition that's already underway) into your `_registerFaceRec()` function.
+
+```JavaScript
+// Invoke this function to start Misty recognizing faces.
+function _registerFaceRec() {
+    // Cancels any face recognition that's currently underway
+    misty.StopFaceRecognition();
+    // Starts face recognition
+    misty.StartFaceRecognition();
+}
+```
+
+We can subscribe to data from Misty's face recognition system by registering for events from the `FaceRecognition` named object. We use the `misty.RegisterEvent` method to do this. This method invokes a callback function each time the registered event occurs. The syntax for `misty.RegisterEvent` is as follows:
+
+```JavaScript
+// Syntax
+misty.RegisterEvent(string eventName, string messageType, int debounce, [bool keepAlive = false], [string callbackRule = “synchronous”], [string skillToCall = null]);
+```
+
+Copy this method into your `_registerFaceRec()` function. Use `FaceRec` for `eventName`, `FaceRecognition` for `messageType`, and `1000` for `debounce`. Set `keepAlive` to `false`.
+
+```JavaScript
+// Invoke this function to start Misty recognizing faces.
+function _registerFaceRec() {
+    // Cancels any face recognition that's currently underway
+    misty.StopFaceRecognition();
+    // Starts face recognition
+    misty.StartFaceRecognition();
+
+    // Registers for FaceRecognition events. Sets eventName to FaceRec,
+    // debounceMs to 1000, and keepAlive to false.
+    misty.RegisterEvent("FaceRec", "FaceRecognition", 1000, false);
+}
+```
+
+By default, when the face recognition system sends an event, data from that event is passed into a callback function with the same name, prefixed by an underscore (in our case, `_FaceRec()`). The face recognition system can send events that do not include meaningful face recognition data -- for example, the system returns an event message when you've successfully registered for an event. To ignore these messages (and invoke the callback function ONLY when meaningful data is present), we pass the data through a property test.
+
+The `misty.AddPropertyTest()` method checks event data against a custom property test, so you can control when the callback function should be invoked. The syntax for the `misty.AddPropertyTest` is as follows:
+
+```JavaScript
+// Syntax
+misty.AddPropertyTest(string eventName, string property, string inequality, string valueAsString, string valueType, [int prePauseMs], [int postPauseMs]);
+```
+
+In our skill, Misty should only invoke the `_FaceRec` callback when she has actually detected a face. We can use the `misty.AddPropertyTest` to check the event data and make sure there is a value for the `PersonName` property before triggering the callback function. To do so, pass in `"PersonName"` as the `property` to check for, and `"exists"` as the inequality to use. Copy this into into your `_registerFaceRec` function.
+
+```JavaScript
+// Invoke this function to start Misty recognizing faces.
+function _registerFaceRec() {
+    // Cancels any face recognition that's currently underway
+    misty.StopFaceRecognition();
+    // Starts face recognition
+    misty.StartFaceRecognition();
+    // If a FaceRecognition event includes a "PersonName" property,
+    // then Misty invokes the _FaceRec callback function.
+    misty.AddPropertyTest("FaceRec", "PersonName", "exists", "", "string");
+    // Registers for FaceRecognition events. Sets eventName to FaceRec,
+    // debounceMs to 1000, and keepAlive to false.
+    misty.RegisterEvent("FaceRec", "FaceRecognition", 1000, false);
+}
+```
+
+Now we can define the `_FaceRec()` callback function. Each time a `FaceRec` event passes our property test, that event data is passed into the `_FaceRec()` callback. Define this function in your skill code.
+
+```JavaScript
+// FaceRec events invoke this callback function.
+function _FaceRec(data) {
+
+}
+```
+
+We place the code that describes how Misty should react when she sees a face inside this `_FaceRec` callback function. First, let's print the value of the `"PersonName"` property to `misty.Debug()` listeners, so we can compare Misty's reaction to the data she receives. Because we used a property test to check for the `"PersonName"` property, we can find the value of that property in the `data` object the callback function receives, at `data.PropertyTestResults[0].PropertyValue`.
+
+Copy the following code into your `_FaceRec` callback function:
+
+```JavaScript
+/ FaceRec events invoke this callback function.
+function _FaceRec(data) {
+    // Stores the value of the detected face
+    var faceDetected = data.PropertyTestResults[0].PropertyValue;
+    // Logs a debug message with the label of the detected face
+    misty.Debug("Misty sees " + faceDetected);
+}
+```
+
+Next, we define how Misty should react when she recognizes your face. We can use the `waveRightArm()` function we wrote in an earlier part of this series to have Misty wave to you. We can use the `misty.DisplayImage()` and `misty.PlayAudio()` methods to have Misty show her happy eyes and play a greeting sound.
+
+Let's package this code inside an `if` statement that runs when the value of the `faceDetected` variable is equal to your name:
+
+```JavaScript
+/ FaceRec events invoke this callback function.
+function _FaceRec(data) {
+    // Stores the value of the detected face
+    var faceDetected = data.PropertyTestResults[0].PropertyValue;
+    // Logs a debug message with the label of the detected face
+    misty.Debug("Misty sees " + faceDetected);
+
+    // Use the Command Center to train Misty to recognize your face.
+    // Then, replace <Your-Name> below with your own name! If Misty
+    // sees and recognizes you, she waves and looks happy.
+    if (faceDetected == "<Your-Name>") {
+        misty.DisplayImage("Happy.png");
+        misty.PlayAudio("005-Eurra.wav");
+        waveRightArm();
+    }
+}
+```
+
+If Misty sees someone she doesn't know, use the `misty.DisplayImage()` and `misty.PlayAudio()` methods to have her raise an eyebrow and play a confused sound. Copy this code into your `_FaceRec()` callback function.
+
+```JavaScript
+// FaceRec events invoke this callback function.
+function _FaceRec(data) {
+    // Stores the value of the detected face
+    var faceDetected = data.PropertyTestResults[0].PropertyValue;
+    // Logs a debug message with the label of the detected face
+    misty.Debug("Misty sees " + faceDetected);
+
+    // Use the Command Center to train Misty to recognize your face.
+    // Then, replace <Your-Name> below with your own name! If Misty
+    // sees and recognizes you, she waves and looks happy.
+    if (faceDetected == "<Your-Name>") {
+        misty.DisplayImage("Happy.png");
+        misty.PlayAudio("005-Eurra.wav");
+        waveRightArm();
+    }
+    // If misty sees someone she doesn't know, she raises her eyebrow
+    // and plays a different sound.
+    else if (faceDetected == "unknown person") {
+        misty.DisplayImage("Disdainful.png");
+        misty.PlayAudio("001-OooOooo.wav");
+    };
+
+    // Register for a timer event to invoke the _registerFaceRec
+    // callback function loop through the _registerFaceRec() again
+    // after 7000 milliseconds pass.
+    misty.RegisterTimerEvent("registerFaceRec", 7000, false);
+}
+```
+
+At the end of the `_FaceRec()` function, call the `misty.RegisterTimerEvent()` method to trigger the `_registerFaceRec()` function after 7000 milliseconds. This ensures that Misty will continue looking for faces, and will greet whomever she sees until the skill ends.
+
+The full `_FaceRec()` function should look like this:
+
+```JavaScript
+// Invoke this function to start Misty recognizing faces.
+function _registerFaceRec() {
+    // Cancels any face recognition that's currently underway
+    misty.StopFaceRecognition();
+    // Starts face recognition
+    misty.StartFaceRecognition();
+    // If a FaceRecognition event includes a "PersonName" property,
+    // then Misty invokes the _FaceRec callback function.
+    misty.AddPropertyTest("FaceRec", "PersonName", "exists", "", "string");
+    // Registers for FaceRecognition events. Sets eventName to FaceRec,
+    // debounceMs to 1000, and keepAlive to false.
+    misty.RegisterEvent("FaceRec", "FaceRecognition", 1000, false);
+}
+
+// FaceRec events invoke this callback function.
+function _FaceRec(data) {
+    // Stores the value of the detected face
+    var faceDetected = data.PropertyTestResults[0].PropertyValue;
+    // Logs a debug message with the label of the detected face
+    misty.Debug("Misty sees " + faceDetected);
+
+    // Use the Command Center to train Misty to recognize your face.
+    // Then, replace <Your-Name> below with your own name! If Misty
+    // sees and recognizes you, she waves and looks happy.
+    if (faceDetected == "<Your-Name>") {
+        misty.DisplayImage("Happy.png");
+        misty.PlayAudio("005-Eurra.wav");
+        waveRightArm();
+    }
+    // If misty sees someone she doesn't know, she raises her eyebrow
+    // and plays a different sound.
+    else if (faceDetected == "unknown person") {
+        misty.DisplayImage("Disdainful.png");
+        misty.PlayAudio("001-OooOooo.wav");
+    };
+
+    // Register for a timer event to invoke the _registerFaceRec
+    // callback function loop through the _registerFaceRec() again
+    // after 7000 milliseconds pass.
+    misty.RegisterTimerEvent("registerFaceRec", 7000, false);
+}
+```
+
+We're almost finished! At the end of your skill code, call the `_registerFaceRec()` function to start Misty recognizing faces and kick off the loop.
+
+```JavaScript
+// Starts Misty recognizing faces!
+_registerFaceRec();
+```
+
+You're now ready to update your skill. Save your changes, and use the Skill Runner to upload your modified `HelloWorld.js` file to Misty. **Remove Misty from her foam block and set her on the floor, with both her treads firmly on the ground**.
+
+When you run the skill, Misty starts looking for faces after she waves for the first time. 
+
+**Note:** Misty's face recognition works best in well-lit environments, and she recognizes faces best when they are directly in front of her visor at a range of closer than about six feet. Because Misty is likely to be on the floor when you run this skill, you may need to kneel down to get within range of her visor. You may also need to wait for Misty to turn her head to look at you, as the head movement commands created in the first part of this series continue to execute until the end of the skill.
+
+#### What's Next?
+
+After you finish the Hello World tutorial series, try customizing the skill to make it your own. Here are a few ideas:
+* Consider teaching Misty new faces, and adjusting the face recognition callback to have her greet different individuals in a unique way.
+* Try modifying the code from the Changing Misty's LED section to use a different color for the chest LED.
+* Experiment with different driving commands to have Misty drive around while she runs your skill.
+
+The elements covered in this tutorial just scratch the surface of what's possible with Misty. When you're ready to learn more, dig into the docs and read about all the different ways Misty helps you bring your code to life!

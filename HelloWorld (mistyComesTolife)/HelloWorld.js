@@ -97,69 +97,93 @@ misty.Pause(3000);
 
 /**********************************************************************
 Driving Misty
+
+This part of the Hello World tutorial series teaches how to use one of
+Misty's basic driving commands. The code you write here will have Misty
+turn slowly to the left and to the right for a better view of her new
+home.
 **********************************************************************/
 
 misty.DriveTime(0, 30, 5000);
 misty.Pause(5000);
 misty.DriveTime(0, -30, 5000);
 misty.Pause(5000);
+misty.Stop();
 
 /**********************************************************************
-Moving Misty's Arms
+Teaching Misty to Wave
+
+This part of the Hello World tutorial series teaches how to
+programmatically move Misty's arms. The code in this section has Misty
+raise her right arm and wave.
 **********************************************************************/
 
-// misty.MoveArmPosition("left", 0, 45);
-// misty.Pause(50);
-// misty.MoveArmPosition("right", 0, 45);
-// misty.Pause(3000);
-// misty.MoveArmPosition("right", 10, 45);
-// misty.Pause(5000);
-// misty.MoveArmPosition("right", 0, 45);
+// Waves Misty's right arm!
+function waveRightArm() {
+    misty.MoveArmPosition("left", 0, 45); // Left arm fully down
+    misty.Pause(50);
+    misty.MoveArmPosition("right", 0, 45); // Right arm fully down
+    misty.Pause(3000); // Pause for 3 seconds
+    misty.MoveArmPosition("right", 10, 45); // Right arm fully up
+    misty.Pause(5000); // Pause with arm up for 5 seconds (wave!)
+    misty.MoveArmPosition("right", 0, 45); // Right arm fully down
+}
+
+waveRightArm();
 
 /**********************************************************************
-Playing Sounds
+Using Face Recognition
+
+This code has Misty start attempting to detect and recognize faces. If
+you've trained Misty on your own face, then Misty waves when she sees
+you. If Misty sees a person she doesn't know, she raises her eyebrows
+and plays a sound.
+
+If you haven't already trained Misty to recognize your face, use the
+Command Center to do so before running the code in this section.
 **********************************************************************/
 
-// function registerFaceRec() 
-// {
-//     misty.AddPropertyTest("FaceRec", "PersonName", "exists", "", "string");
-//     misty.RegisterEvent("FaceRec", "FaceRecognition", 1000, false);
-// }
+// Invoke this function to start Misty recognizing faces.
+function _registerFaceRec() {
+    // Cancels any face recognition that's currently underway
+    misty.StopFaceRecognition();
+    // Starts face recognition
+    misty.StartFaceRecognition();
+    // If a FaceRecognition event includes a "PersonName" property,
+    // then Misty invokes the _FaceRec callback function.
+    misty.AddPropertyTest("FaceRec", "PersonName", "exists", "", "string");
+    // Registers for FaceRecognition events. Sets eventName to FaceRec,
+    // debounceMs to 1000, and keepAlive to false.
+    misty.RegisterEvent("FaceRec", "FaceRecognition", 1000, false);
+}
 
-// function _FaceRec(data) 
-// {
-//     var faceDetected = data.PropertyTestResults[0].PropertyValue;
-//     misty.Debug("Misty sees " + faceDetected);
+// FaceRec events invoke this callback function.
+function _FaceRec(data) {
+    // Stores the value of the detected face
+    var faceDetected = data.PropertyTestResults[0].PropertyValue;
+    // Logs a debug message with the label of the detected face
+    misty.Debug("Misty sees " + faceDetected);
 
-//     if (faceDetected == "unknown person") 
-//     {   
-//         misty.ChangeLED(255, 0, 0);
-//         misty.DisplayImage("Disdainful.png");
-//         misty.PlayAudio("angry.wav");
-//         misty.TakePicture(false, "Intruder", 1200, 1600, false, true);
-//         misty.MoveArmPosition("left", 5, 45);
-//         misty.Pause(50);
-//         misty.MoveArmPosition("right", 5, 45);
-//     } 
-//     else if (faceDetected == "<Your Name>") 
-//     {
-//         misty.ChangeLED(148, 0, 211);
-//         misty.DisplayImage("Happy.png");
-//         misty.PlayAudio("<happySoundAsset.wav>");
-//         misty.MoveArmPosition("left", 10, 45);
-//         misty.Pause(50);
-//         misty.MoveArmPosition("right", 10, 45);
-//     } 
-//     else 
-//     {
-//         misty.ChangeLED(148, 0, 211);
-//         misty.DisplayImage("Wonder.png");
-//         misty.PlayAudio("<greetingSoundAsset.wav>");
-//         misty.MoveArmPosition("left", 10, 45);
-//         misty.Pause(50);
-//         misty.MoveArmPosition("right", 10, 45);
-//     }
+    // Use the Command Center to train Misty to recognize your face.
+    // Then, replace <Your-Name> below with your own name! If Misty
+    // sees and recognizes you, she waves and looks happy.
+    if (faceDetected == "<Your-Name>") {
+        misty.DisplayImage("Happy.png");
+        misty.PlayAudio("005-Eurra.wav");
+        waveRightArm();
+    }
+    // If misty sees someone she doesn't know, she raises her eyebrow
+    // and plays a different sound.
+    else if (faceDetected == "unknown person") {
+        misty.DisplayImage("Disdainful.png");
+        misty.PlayAudio("001-OooOooo.wav");
+    };
 
-//     misty.RegisterTimerEvent("registerFaceRec", 7000, false);
-// }
+    // Register for a timer event to invoke the _registerFaceRec
+    // callback function loop through the _registerFaceRec() again
+    // after 7000 milliseconds pass.
+    misty.RegisterTimerEvent("registerFaceRec", 7000, false);
+}
 
+// Starts Misty recognizing faces!
+_registerFaceRec();
