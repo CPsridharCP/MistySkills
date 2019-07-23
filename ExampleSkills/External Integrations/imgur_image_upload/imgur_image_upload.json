@@ -1,0 +1,19 @@
+{
+  "Name": "imgur_image_upload",
+  "UniqueId": "f3b39603-9309-4112-b456-542cc47541e9",
+  "Description": "Uploads Image to IMGUR Hidden album and shares URL of image",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": false,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
