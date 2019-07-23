@@ -1,0 +1,19 @@
+{
+  "Name": "twiilio_mms",
+  "UniqueId": "7070fe68-51d0-4481-9eaa-af12933aaecd",
+  "Description": "Sends MMS using Twilio",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": false,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
