@@ -1,5 +1,5 @@
 {
-  "Name": "twiilio_mms",
+  "Name": "twilio_mms",
   "UniqueId": "7070fe68-51d0-4481-9eaa-af12933aaecd",
   "Description": "Sends MMS using Twilio",
   "StartupRules": [
