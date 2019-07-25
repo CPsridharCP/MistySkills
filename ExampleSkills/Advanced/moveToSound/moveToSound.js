@@ -65,7 +65,7 @@ function lookAt(heading,robotYawAtStart,headYawAtStart)
     actuateTo = actuateTo <-45.0 ? -45.0 : actuateTo;
     actuateTo = actuateTo >45 ? 45.0 : actuateTo;
     misty.Debug(actuateTo.toString()+" <- Head to move to");
-    misty.MoveHeadDegrees(-15.0, 0.5, actuateTo, 500);
+    misty.MoveHeadDegrees(-15.0, 0.5, actuateTo, 50);
     
     
     // Body Motion
@@ -84,10 +84,10 @@ function lookAt(heading,robotYawAtStart,headYawAtStart)
         { 
             // misty.Debug(currentAbsError/initialError);
             currentAbsError = Math.abs(AngleDifference(misty.Get("robotYaw"),globalHeading));
-            if (currentAbsError/initialError <0.70 && !headResetDone)
+            if (currentAbsError/initialError <0.45 && !headResetDone)
             {
                 headResetDone = true;
-                misty.MoveHeadDegrees(-15.0, 0.0, 0.0,500);
+                misty.MoveHeadDegrees(-15.0, 0.0, 0.0,50);
             }
             else {}
             misty.Pause(10);
