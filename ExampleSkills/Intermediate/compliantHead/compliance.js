@@ -46,7 +46,7 @@ function _Touched(data)
 {
     var sensor = data.AdditionalResults[0];
     var isPressed = data.AdditionalResults[1];
-	isPressed ? misty.Debug(sensor+" is Touched") : misty.Debug(sensor+" is Released");
+    isPressed ? misty.Debug(sensor+" is Touched") : misty.Debug(sensor+" is Released");
     
     if (isPressed )
     {
