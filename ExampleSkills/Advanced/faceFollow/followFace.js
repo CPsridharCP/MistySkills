@@ -13,6 +13,8 @@
 *    limitations under the License.
 */
 
+// Head movements speeds have been recently updated in a Build. 
+// This skill will be updates soon
 
 misty.ChangeLED(200, 0, 255);
 
