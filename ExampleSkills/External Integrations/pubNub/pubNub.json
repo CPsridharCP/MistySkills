@@ -1,0 +1,19 @@
+{
+  "Name": "pubNub",
+  "UniqueId": "b9dda3c9-822b-4735-8ed0-67a9d8495c4f",
+  "Description": "Template skill on Pub Sub using PubNub",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": false,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
