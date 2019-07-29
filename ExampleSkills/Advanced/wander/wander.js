@@ -13,6 +13,8 @@
 *    limitations under the License.
 */
 
+// This skill us not updates to match the lastest Firmware updates yet. 
+// Should be updated Mid August
 
 misty.Debug("Centering Head");
 misty.MoveHeadPosition(0, 0, 0, 100);
