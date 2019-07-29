@@ -167,7 +167,7 @@ function AngleDifference(now, to)
 
 function secondsPast(value)
 {
-	var timeElapsed = new Date() - new Date(value);
+    var timeElapsed = new Date() - new Date(value);
     timeElapsed /= 1000;
     return timeElapsed; // seconds
 }
