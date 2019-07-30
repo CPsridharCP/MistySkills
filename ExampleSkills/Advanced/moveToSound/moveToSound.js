@@ -13,8 +13,7 @@
 *    limitations under the License.
 */
 
-
-// Misty suttly looks at people who are speaking around her !!
+// Misty turn to look at the person who is speaking
 // It is intended to be slow and not super responsive - Feel free to play with latencey and make it faster 
 
 misty.ChangeLED(0, 0, 255);
@@ -125,13 +124,13 @@ function registerActuatorPosition()
 {   
     misty.AddReturnProperty("Positions", "SensorId");
     misty.AddReturnProperty("Positions", "Value");
-    misty.AddPropertyTest("Positions", "SensorId", "==", "ahy", "string"); //////////// ahy //////////
+    misty.AddPropertyTest("Positions", "SensorId", "==", "ahy", "string"); 
     misty.RegisterEvent("Positions", "ActuatorPosition", 100 ,true); 
 }
 
 function _Positions(data) 
 {   
-    if (data.AdditionalResults[0] == "ahy" ) // should be ahy ////////////////////////////////////////
+    if (data.AdditionalResults[0] == "ahy" ) 
     {
         // misty.Debug(data.AdditionalResults[0]+" "+(data.AdditionalResults[1]).toString())
         var headYaw = data.AdditionalResults[1];//*180.0/Math.PI;
@@ -150,8 +149,7 @@ function registerIMU()
 
 function _Heading(data)
 {   
-    var yaw = data.PropertyTestResults[0].PropertyParent.Yaw;//*180.0/Math.PI;
-    // yaw *= -1; // CW to CCW
+    var yaw = data.PropertyTestResults[0].PropertyParent.Yaw;
     if (yaw > 180) yaw -= 360;
     misty.Set("robotYaw", yaw);
     // misty.Debug(yaw.toString()+" <-- Yaw");
@@ -174,10 +172,9 @@ function secondsPast(value)
 
 function toRobotFrame(data)
 {
-    var soundIn = 360-data;
+    var soundIn = data;
     if (soundIn>180) soundIn -= 360;
-    return (soundIn);//-1*(data-180)
-    // return data;
+    return (soundIn)
 }
 
 function offset_heading(to_offset){
