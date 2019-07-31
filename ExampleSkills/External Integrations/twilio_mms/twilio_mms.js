@@ -13,6 +13,10 @@
 *    limitations under the License.
 */
 
+// This is almost the same as SMS with 'MediaUrl' added.
+// Coimbine this with take and upload picture to imgur album example 
+// to let Misty send you a picture of what she Sees 
+// https://github.com/CPsridharCP/MistySkills/tree/master/ExampleSkills/External%20Integrations/imgur_image_upload
 
 var jsonBody = 
 {
