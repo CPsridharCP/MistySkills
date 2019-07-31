@@ -1,0 +1,19 @@
+{
+  "Name": "roamInRegion",
+  "UniqueId": "9f6eae6f-5275-45c8-ae71-60e75098e80a",
+  "Description": "Misty Roams inside your imaginary bounding box",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": false,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
