@@ -20,18 +20,18 @@ misty.Debug("Centering Head");
 misty.MoveHeadPosition(0, 0, 0, 100);
 misty.ChangeLED(148, 0, 211);
 
-//------------------------- Blink------------------------------------------------------
+// //------------------------- Blink------------------------------------------------------
 
-misty.Set("eyeMemory", "Homeostasis.png");
+// misty.Set("eyeMemory", "Homeostasis.png");
 
-function _blink_now() 
-{
-    misty.DisplayImage("blinkMisty.png");
-    misty.Pause(200);
-    misty.DisplayImage(misty.Get("eyeMemory"));
-    misty.RegisterTimerEvent("blink_now", getRandomInt(2, 8) * 1000, false);
-}
-misty.RegisterTimerEvent("blink_now", getRandomInt(2, 8) * 1000, false);
+// function _blink_now() 
+// {
+//     misty.DisplayImage("blinkMisty.png");
+//     misty.Pause(200);
+//     misty.DisplayImage(misty.Get("eyeMemory"));
+//     misty.RegisterTimerEvent("blink_now", getRandomInt(2, 8) * 1000, false);
+// }
+// misty.RegisterTimerEvent("blink_now", getRandomInt(2, 8) * 1000, false);
 
 
 //------------------------- Hand Movements--------------------------------------------
