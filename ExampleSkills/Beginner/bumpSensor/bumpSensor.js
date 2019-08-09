@@ -31,19 +31,19 @@ function _Bumped(data)
     {
         if (sensor == "Bump_FrontRight")
         {
-            misty.PlayAudio("003-Screetch.wav");   
+            misty.PlayAudio("s_Joy2.wav");   
         } 
         else if (sensor == "Bump_FrontLeft")
         {
-            misty.PlayAudio("020-Whoap.wav");   
+            misty.PlayAudio("s_Awe3.wav");   
         } 
         else if (sensor == "Bump_RearLeft")
         {
-            misty.PlayAudio("015-Meow.wav");   
+            misty.PlayAudio("s_PhraseHello.wav");   
         } 
         else if (sensor == "Bump_RearRight")
         {
-            misty.PlayAudio("031-Psspewpew.wav");
+            misty.PlayAudio("s_Fear.wav");
         } 
         else 
         {
