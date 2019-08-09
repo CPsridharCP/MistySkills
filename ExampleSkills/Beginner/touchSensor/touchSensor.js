@@ -30,27 +30,27 @@ function _Touched(data)
     {
         if (sensor == "Chin")
         {            
-            misty.PlayAudio("031-Psspewpew.wav");   
+            misty.PlayAudio("s_PhraseOwwww.wav");   
         } 
         else if (sensor == "HeadRight")
         {
-            misty.PlayAudio("020-Whoap.wav");   
+            misty.PlayAudio("s_PhraseEvilAhHa.wav");   
         } 
         else if (sensor == "HeadLeft")
         {
-            misty.PlayAudio("015-Meow.wav");   
+            misty.PlayAudio("s_Distraction.wav");   
         } 
         else if (sensor == "HeadFront")
         {
-            misty.PlayAudio("003-Screetch.wav");
+            misty.PlayAudio("s_Acceptance.wav");
         } 
         else if (sensor == "HeadBack")
         {
-            misty.PlayAudio("006-Sigh-01.wav");
+            misty.PlayAudio("s_Disapproval.wav");
         } 
         else if (sensor == "Scruff")
         {
-            misty.PlayAudio("008-Huhurr.wav");
+            misty.PlayAudio("s_Grief.wav");
         } 
         else 
         {
