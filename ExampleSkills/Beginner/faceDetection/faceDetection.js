@@ -13,7 +13,7 @@
  *    limitations under the License.
  */
 
-misty.Debug("Homing Head and Arms");
+misty.Debug("Face Detection Basic skill starting");
 misty.MoveHeadPosition(0, 0, 0, 40);
 misty.MoveArmDegrees("right", 70, 10);
 misty.Pause(50);
