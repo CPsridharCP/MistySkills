@@ -22,8 +22,11 @@ misty.AddPropertyTest("FrontTOF", "SensorPosition", "==", "Center", "string");
 misty.AddPropertyTest("FrontTOF", "DistanceInMeters", "<=", 0.15, "double"); 
 misty.RegisterEvent("FrontTOF", "TimeOfFlight", 0, false);
 
+misty.ChangeLED(144, 0, 230);
 misty.Pause(1000);
-misty.Drive(50, 0);
+
+// Uncomment the below line to see Misty drive straight and stop at an obstacle encounter
+// misty.Drive(50, 0);
 
 // All possible sensor positions would be
 // Center
@@ -39,6 +42,7 @@ function _FrontTOF(data)
 {
     misty.Debug(data.PropertyTestResults[0].PropertyParent.DistanceInMeters);
     misty.Stop();
+    misty.ChangeLED(255, 0, 0);
     misty.PlayAudio("<audio_file_with_extension>");
 }
 
