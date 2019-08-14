@@ -13,40 +13,38 @@
  *    limitations under the License.
  */
 
-misty.Debug("Face Detection Basic skill starting");
-misty.MoveHeadPosition(0, 0, 0, 40);
-misty.MoveArmDegrees("right", 70, 10);
-misty.Pause(50);
-misty.MoveArmDegrees("left", 70, 10);
-misty.ChangeLED(148, 0, 211);
+misty.Debug("Homing Head and Arms");
+_timeoutToNormal();
 
+misty.StartFaceDetection();
 
-function registerFaceRec() 
+function registerFaceDetection() 
 {
-    misty.AddPropertyTest("FaceRec", "PersonName", "exists", "", "string");
-    misty.RegisterEvent("FaceRec", "FaceRecognition", 1000, false);
+    misty.AddPropertyTest("FaceDetect", "PersonName", "exists", "", "string");
+    misty.RegisterEvent("FaceDetect", "FaceRecognition", 1000, true);
 }
 
-function _FaceRec(data) 
-{
-    var faceDetected = data.PropertyTestResults[0].PropertyValue;
-
-    if (faceDetected == "unknown person") 
-    {
-        misty.ChangeLED(255, 0, 0);
-        misty.DisplayImage("e_Disgust.jpg");
-        misty.MoveArmDegrees("right", 70, 10);
-        misty.Pause(50);
-        misty.MoveArmDegrees("left", 70, 10);
-    } 
-    else if (faceDetected == "<Your Name>") 
-    {
-        misty.ChangeLED(148, 0, 211);
-        misty.DisplayImage("e_Joy.jpg");
-        misty.MoveArmDegrees("right", -80, 10);
-        misty.Pause(50);
-        misty.MoveArmDegrees("left", -80, 10);
-    } 
+function _FaceDetect(data)
+{   
+    misty.Debug(JSON.stringify(data));
+    misty.ChangeLED(148, 0, 211);
+    misty.DisplayImage("e_Joy.jpg");
+    misty.MoveArmDegrees("right", -80, 10);
+    misty.Pause(50);
+    misty.MoveArmDegrees("left", -80, 10);
+    misty.RegisterTimerEvent("timeoutToNormal", 5000, false);
 }
 
-registerFaceRec();
+registerFaceDetection();
+
+function _timeoutToNormal()
+{
+    registerFaceDetection();
+    misty.Pause(100);
+    misty.MoveHeadPosition(0.1, 0.1, 0.1, 40);
+    misty.MoveArmDegrees("right", 70, 10);
+    misty.Pause(50);
+    misty.MoveArmDegrees("left", 70, 10);
+    misty.ChangeLED(0, 255, 0);
+    misty.DisplayImage("e_DefaultContent.jpg");
+}
