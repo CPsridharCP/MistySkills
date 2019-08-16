@@ -39,7 +39,6 @@ registerFaceDetection();
 
 function _timeoutToNormal()
 {
-    registerFaceDetection();
     misty.Pause(100);
     misty.MoveHeadPosition(0.1, 0.1, 0.1, 40);
     misty.MoveArmDegrees("right", 70, 10);
