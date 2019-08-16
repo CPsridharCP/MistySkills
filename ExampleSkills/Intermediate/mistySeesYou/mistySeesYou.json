@@ -1,0 +1,19 @@
+{
+  "Name": "mistySeesYou",
+  "UniqueId": "080d857e-5006-4c56-a4ee-f2cdfd9b1fa9",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
