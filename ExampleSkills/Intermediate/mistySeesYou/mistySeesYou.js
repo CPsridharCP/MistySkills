@@ -22,7 +22,7 @@ misty.MoveArmDegrees("left", 70, 10);
 
 function _look_around(repeat = true) 
 {
-    if (!misty.Get("faceInFOV")) misty.MoveHeadPosition(getRandomInt(-3, 3), getRandomInt(-2, 2), getRandomInt(-4, 4), 300);
+    if (!misty.Get("faceInFOV")) misty.MoveHeadPosition(gaussianRandom(-5, 5), gaussianRandom(-5, 5), gaussianRandom(-5, 5), 300);
     if (repeat) misty.RegisterTimerEvent("look_around", getRandomInt(5, 10) * 1000, false);
 }
 misty.RegisterTimerEvent("look_around", 10, false);
