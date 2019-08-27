@@ -153,8 +153,7 @@ function sendPicture() {
         'To': misty.Get("contact"),
         'MediaUrl': misty.Get("imageLink")
     };
-
-    //b64 encoding of 'ACd3f05f5cabb425704c09dbc8494783a8:ad84ba265dbdaf4ae6bf2016804b690f'
+    
     var credentials = "<twilio-account-key>"
     misty.SendExternalRequest("POST", "https://api.twilio.com/2010-04-01/Accounts/<twilio-account-id>/Messages.json", "Basic", credentials, JSON.stringify(jsonBody), false, false, "", "application/x-www-form-urlencoded");
 }
