@@ -27,9 +27,26 @@ misty.AddReturnProperty("Hazard", "TimeOfFlightSensorsHazardState");
 // misty.AddReturnProperty("Hazard", "MotorStallHazard");
 misty.RegisterEvent("Hazard", "HazardNotification", 0, true);
 
-function _Hazard(data) {
+function _Hazard(data) 
+{
+    const region = 
+    {
+        "TOF_Back" : "Back",
+        "TOF_Right" : "FrontRight",
+        "TOF_Left" : "FrontLeft",
+        "TOF_Center" : "Centre",
+        "TOF_DownBackLeft" : "RearLeft",
+        "TOF_DownBackRight": "RearRight",
+        "TOF_DownFrontLeft" : "FrontLeft",
+        "TOF_DownFrontRight" : "FrontRight",
+        "Bump_FrontRight": "FrontRight",
+        "Bump_FrontLeft": "FrontLeft",
+        "Bump_RearLeft": "RearLeft",
+        "Bump_RearRight": "RearRight"
+    }
+
     var safe = false;
-    misty.Debug(JSON.stringify(data));
+    // misty.Debug(JSON.stringify(data));
     misty.Debug(JSON.stringify(data.AdditionalResults));
     const dataIn = data.AdditionalResults;
 
@@ -40,8 +57,25 @@ function _Hazard(data) {
         });
     });
 
-    triggers.length ? {} : safe = true;
+    triggers.length ? misty.Debug(region[triggers[0]]) : safe = true;
+
     safe ? misty.ChangeLED(255, 255, 255) : misty.ChangeLED(255, 0, 0);
-    misty.Debug(safe);
-    misty.Debug(triggers);
+    // misty.Debug(safe);
+    // misty.Debug(triggers);
 }
+
+
+// const region = {
+//     "TOF_Back": BackCorrection(),
+//     "TOF_Right": RightCorrection(),
+//     "TOF_Left": LeftCorrection(),
+//     "TOF_Center": FrontCorrection(),
+//     "TOF_DownBackLeft": BackCorrection("LEFT"),
+//     "TOF_DownBackRight": BackCorrection("RIGHT"),
+//     "TOF_DownFrontLeft": LeftCorrection(),
+//     "TOF_DownFrontRight": RightCorrection(),
+//     "Bump_FrontRight": RightCorrection(),
+//     "Bump_FrontLeft": LeftCorrection(),
+//     "Bump_RearLeft": BackCorrection("LEFT"),
+//     "Bump_RearRight": BackCorrection("RIGHT")
+// }
