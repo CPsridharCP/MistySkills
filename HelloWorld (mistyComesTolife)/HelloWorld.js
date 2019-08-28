@@ -120,13 +120,9 @@ raise her right arm and wave.
 
 // Waves Misty's right arm!
 function waveRightArm() {
-    misty.MoveArmPosition("left", 0, 45); // Left arm fully down
-    misty.Pause(50);
-    misty.MoveArmPosition("right", 0, 45); // Right arm fully down
-    misty.Pause(3000); // Pause for 3 seconds
-    misty.MoveArmPosition("right", 10, 45); // Right arm fully up
-    misty.Pause(5000); // Pause with arm up for 5 seconds (wave!)
-    misty.MoveArmPosition("right", 0, 45); // Right arm fully down
+    misty.MoveArmDegrees("right", -80, 30); // Both arms fully up
+    misty.Pause(3000); // Pause with arm up for 3 seconds (wave!)
+    misty.MoveArmDegrees("both", 80, 30); // Right arm fully down
 }
 
 waveRightArm();
