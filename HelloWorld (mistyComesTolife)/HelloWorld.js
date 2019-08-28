@@ -20,11 +20,11 @@ function _look_around(repeat = true) {
     // Moves Misty's head to a random position. Adjust the min/max
     // values passed into getRandomInt() to change Misty's range of
     // motion when she calls this method.
-    misty.MoveHeadPosition(
-        getRandomInt(-5, 5), // Random pitch position between -5 and 5
-        getRandomInt(-5, 5), // Random roll position between -5 and 5
-        getRandomInt(-5, 5), // Random yaw position between -5 and 5
-        300); // Head movement velocity. Decrease for slower movement.
+    misty.MoveHeadDegrees(
+        getRandomInt(-40, 20), // Random pitch position between -40 and 20
+        getRandomInt(-30, 30), // Random roll position between -30 and 30
+        getRandomInt(-40, 40), // Random yaw position between -40 and 40
+        30); // Head movement velocity. Decrease for slower movement.
 
         // If repeat is set to true, re-registers for the look_around
         // timer event, and Misty moves her head until the skill ends.
@@ -91,7 +91,7 @@ have Misty play a sound
 **********************************************************************/
 
 // Plays an audio file at max volume.
-misty.PlayAudio("001-EeeeeeE.wav", 100);
+misty.PlayAudio("s_Amazement.wav", 100);
 // Pauses for 3000 milliseconds before executing the next command.
 misty.Pause(3000);
 
@@ -168,15 +168,15 @@ function _FaceRec(data) {
     // Then, replace <Your-Name> below with your own name! If Misty
     // sees and recognizes you, she waves and looks happy.
     if (faceDetected == "<Your-Name>") {
-        misty.DisplayImage("Happy.png");
-        misty.PlayAudio("005-Eurra.wav");
+        misty.DisplayImage("e_Joy.jpg");
+        misty.PlayAudio("s_Joy3.wav");
         waveRightArm();
     }
     // If misty sees someone she doesn't know, she raises her eyebrow
     // and plays a different sound.
     else if (faceDetected == "unknown person") {
-        misty.DisplayImage("Disdainful.png");
-        misty.PlayAudio("001-OooOooo.wav");
+        misty.DisplayImage("e_Contempt.jpg");
+        misty.PlayAudio("s_DisorientedConfused4.wav");
     };
 
     // Register for a timer event to invoke the _registerFaceRec
