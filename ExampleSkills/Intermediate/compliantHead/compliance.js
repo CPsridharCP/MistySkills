@@ -1,22 +1,5 @@
-/*
-*    Copyright 2019 Misty Robotics, Inc.
-*    Licensed under the Apache License, Version 2.0 (the "License");
-*    you may not use this file except in compliance with the License.
-*    You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-*    Unless required by applicable law or agreed to in writing, software
-*    distributed under the License is distributed on an "AS IS" BASIS,
-*    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-*    See the License for the specific language governing permissions and
-*    limitations under the License.
-*/
-
-
 // This skill makes Mistys head compliant!
-// By compliant - dis-engaging Misty's head motots on touch sensor activation 
-// re-engaging Misty's head motots on touch sensor release
+
 registerActuatorPosition();
 
 registerCapTouch();
@@ -46,7 +29,7 @@ function _Touched(data)
 {
     var sensor = data.AdditionalResults[0];
     var isPressed = data.AdditionalResults[1];
-    isPressed ? misty.Debug(sensor+" is Touched") : misty.Debug(sensor+" is Released");
+	isPressed ? misty.Debug(sensor+" is Touched") : misty.Debug(sensor+" is Released");
     
     if (isPressed )
     {
@@ -81,9 +64,9 @@ function _Touched(data)
         var p = misty.Get("pitch")>=0.0 ? misty.Get("pitch")-10.0 : misty.Get("pitch")+10.0
         var r = misty.Get("roll")>=0.0 ? misty.Get("roll")-10.0 : misty.Get("roll")+10.0;
         var y = misty.Get("yaw")>=0.0 ? misty.Get("yaw")-10.0 : misty.Get("yaw")+10.0;
-        misty.MoveHeadDegrees(p, r, y, 300);
+        misty.MoveHeadDegrees(p, r, y, 10);
         misty.Pause(100);
-        misty.MoveHeadDegrees(misty.Get("pitch"), misty.Get("roll"), misty.Get("yaw"), 300);
+        misty.MoveHeadDegrees(misty.Get("pitch"), misty.Get("roll"), misty.Get("yaw"), 40);
         misty.Set("inTouch", false);
     } else {}
 
