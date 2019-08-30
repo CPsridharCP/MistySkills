@@ -25,8 +25,8 @@ misty.RegisterEvent("FrontTOF", "TimeOfFlight", 0, false);
 misty.ChangeLED(144, 0, 230);
 misty.Pause(1000);
 
-// Uncomment the below line to see Misty drive straight and stop at an obstacle encounter
-// misty.Drive(50, 0);
+// UNCOMMENT the below line to see Misty drive straight and stop at an obstacle encounter
+// misty.Drive(20, 0);
 
 // All possible sensor positions would be
 // Center
