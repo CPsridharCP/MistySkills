@@ -1,0 +1,19 @@
+{
+  "Name": "slamPoseStatus",
+  "UniqueId": "e6a0f6c4-2ebc-488b-808a-039f77293dc7",
+  "Description": "Displays Robot Pose Status via chest LED",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": true,
+  "WriteToLog": true,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
