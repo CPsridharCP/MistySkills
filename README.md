@@ -9,10 +9,8 @@ What would you build?
 |
 
 |__ ## Beginner
-
-   |
-   
-   |__ Bump Sensor
+   \|
+   \|__ Bump Sensor
    
    |__ Touch Sensor
    
