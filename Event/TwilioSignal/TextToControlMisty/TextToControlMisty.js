@@ -1,4 +1,4 @@
-misty.Debug("SIGNAL Challenge Skill");
+misty.Debug("TextToControlMisty");
 
 misty.DisplayImage("e_DefaultContent.jpg");
 misty.Set("lastUpdate", "Some Date", false);
