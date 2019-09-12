@@ -6,11 +6,11 @@ What would you build?
 
 ## Example Skills
 
-+|\
-+|__ ## Beginner\
--   |\
--   |__ Bump Sensor\
--   |__ Touch Sensor\
+|\
+|__ ## Beginner\
+----|\
+----|__ Bump Sensor\
+----|__ Touch Sensor\
 -   |__ Look Around\
 -   |__ Random LED\
 -   |__ Drive Circle / Square\
