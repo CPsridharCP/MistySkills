@@ -1,4 +1,4 @@
-misty.Debug("TextToControlMisty");
+misty.Debug("Text To Control Misty Skill");
 
 misty.DisplayImage("e_DefaultContent.jpg");
 misty.Set("lastUpdate", "Some Date", false);
