@@ -1,5 +1,5 @@
 {
-  "Name": "signalChallenge",
+  "Name": "TextToControlMisty",
   "UniqueId": "33ffaa6e-22b0-4aa9-99a5-b1d71d1cf6c3",
   "Description": "My skill is amazing!",
   "StartupRules": [
@@ -9,7 +9,7 @@
   "Language": "javascript",
   "BroadcastMode": "debug",
   "TimeoutInSeconds": 36000,
-  "CleanupOnCancel": false,
+  "CleanupOnCancel": true,
   "WriteToLog": false,
   "Parameters": {
     "int": 10,
