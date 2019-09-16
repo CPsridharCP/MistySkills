@@ -1,0 +1,20 @@
+{
+  "Name": "skillManager",
+  "UniqueId": "e06803a2-e954-42dc-80d1-fcde1cd7a99c",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot",
+    "Startup"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": false,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
