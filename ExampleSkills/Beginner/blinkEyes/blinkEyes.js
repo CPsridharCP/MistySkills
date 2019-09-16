@@ -13,17 +13,23 @@
 *    limitations under the License.
 */
 
-// Misty now blinks by defaul post late July 2019 update release
-misty.Set("eyeMemory", "Homeostasis.png");
+// Stop Misty's default blinking
+misty.SetBlinking(false);
+
+// Turn on Misty's default blinking
+// misty.SetBlinking(true);
+
+// Your Custom Blink
+misty.Set("eyeMemory", "my_eye_image.jpg");
 
 function _blink_now(repeat = true) 
 {
-    misty.DisplayImage("blinkMisty.png");
+    misty.DisplayImage("my_blink_image.jpg");
     misty.Pause(200);
     misty.DisplayImage(misty.Get("eyeMemory"));
     if (repeat) misty.RegisterTimerEvent("blink_now", getRandomInt(2, 8) * 1000, false);
 }
-misty.RegisterTimerEvent("blink_now", getRandomInt(2, 8) * 1000, false);
+_blink_now();
 
 function getRandomInt(min, max) 
 {
