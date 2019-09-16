@@ -28,6 +28,7 @@ What would you build?
    |__ Compliant Head
    |__ Filter Event Data
    |__ Hazard Indicator
+   |__ Skill Manager
    |__ Intruder Alert
    |__ Random Wander
    |__ Roam in Region (dead reckon - be careful)
