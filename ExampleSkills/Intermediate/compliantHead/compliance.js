@@ -32,7 +32,8 @@ misty.Set("pitch", 0.0);
 misty.Set("yaw", 0.0);
 
 // Event to handle any Capacitive Touch Event
-function registerCapTouch(){
+function registerCapTouch()
+{
 
     misty.AddReturnProperty("Touched", "sensorPosition");
     misty.AddReturnProperty("Touched", "IsContacted");
