@@ -11,6 +11,7 @@ What would you build?
    |
    |__ Bump Sensor
    |__ Touch Sensor
+   |__ Custom Blinking
    |__ Look Around
    |__ Random LED
    |__ Drive Circle / Square
