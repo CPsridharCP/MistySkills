@@ -33,6 +33,7 @@ What would you build?
    |__ Random Wander
    |__ Roam in Region (dead reckon - be careful)
    |__ SLAM Pose Status
+   |__ Finger Print Scanner (Arduino-Compatible Backpack)
 |
 |__ Advanced
    |
