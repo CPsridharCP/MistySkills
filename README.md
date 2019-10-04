@@ -40,4 +40,10 @@ What would you build?
    |__ Turn to Sound
    |__ Face Follow (needs rework)
    |__ Simple Auto-Docking Experiments
+|
+|__ External Integration
+   |
+   |__ PubNub 
+   |__ Twilio SMS / MMS
+   |__ Imgur
 </pre>
