@@ -55,7 +55,7 @@ Note: You can add the two 10kOhm resistors in series for 20kOhms. =)
 // set up software serial pins for Arduino's w/ Atmega328P's
 // FPS (TX) is connected to pin 4 (Arduino's Software RX)
 // FPS (RX) is connected through a converter to pin 5 (Arduino's Software TX)
-FPS_GT511C3 fps(4, 5); // (Arduino SS_RX = pin 4, Arduino SS_TX = pin 5)
+FPS_GT511C3 fps(18, 19); // (Arduino SS_RX = pin 4, Arduino SS_TX = pin 5)
 
 /*If using another Arduino microcontroller, try commenting out line 53 and
 uncommenting line 62 due to the limitations listed in the
