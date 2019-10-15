@@ -24,13 +24,12 @@ misty.StartFaceRecognition();
 
 function registerFaceRec() 
 {
-    misty.AddPropertyTest("FaceRec", "PersonName", "exists", "", "string");
     misty.RegisterEvent("FaceRec", "FaceRecognition", 1000, false);
 }
 
 function _FaceRec(data) 
 {
-    var faceDetected = data.PropertyTestResults[0].PropertyValue;
+    var faceDetected = data.PropertyTestResults[0].PropertyParent.PersonName;
 
     if (faceDetected == "unknown person") {
         misty.ChangeLED(255, 0, 0);
