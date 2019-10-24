@@ -39,7 +39,7 @@ function playGIF(start, end, loopCount = 1, format = ".GIF",  filenamePrefix = "
         start = temp;
         while (start <= end) {
             misty.DisplayImage(filenamePrefix + start.toString() + filenamePostfix + format);
-            misty.Pause(120);
+            misty.Pause(100);
             start = start + 1;
         }    
     }
