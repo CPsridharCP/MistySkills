@@ -20,11 +20,12 @@ detectWakeWord();
 function detectWakeWord() 
 {
     misty.StartKeyPhraseRecognition();
-    misty.RegisterEvent("heyMisty", "KeyphraseRecognized", 10, true);
+    misty.RegisterEvent("heyMisty", "KeyphraseRecognized", 10, false);
 }
 
 function _heyMisty() 
 {
     misty.PlayAudio("s_SystemWakeWord.wav", 100);
     misty.Debug("Wake Work Recognised");
+    detectWakeWord();
 }
