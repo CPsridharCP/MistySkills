@@ -26,6 +26,7 @@ What would you build?
 |__ Intermediate
    |
    |__ Compliant Head
+   |__ Playing GIFs
    |__ Filter Event Data
    |__ Hazard Indicator
    |__ Skill Manager
