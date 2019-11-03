@@ -41,6 +41,7 @@ What would you build?
    |__ Turn to Sound
    |__ Face Follow (needs rework)
    |__ Simple Auto-Docking Experiments
+   |__ Translate Language
 |
 |__ External Integration
    |
