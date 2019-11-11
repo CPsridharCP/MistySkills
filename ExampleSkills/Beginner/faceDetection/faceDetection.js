@@ -29,9 +29,9 @@ function _FaceDetect(data)
     misty.Debug(JSON.stringify(data));
     misty.ChangeLED(148, 0, 211);
     misty.DisplayImage("e_Joy.jpg");
-    misty.MoveArmDegrees("right", -80, 10);
+    misty.MoveArmDegrees("right", -80, 60);
     misty.Pause(50);
-    misty.MoveArmDegrees("left", -80, 10);
+    misty.MoveArmDegrees("left", -80, 60);
     misty.RegisterTimerEvent("timeoutToNormal", 5000, false);
 }
 
@@ -40,7 +40,7 @@ registerFaceDetection();
 function _timeoutToNormal()
 {
     misty.Pause(100);
-    misty.MoveHeadPosition(0.1, 0.1, 0.1, 40);
+    misty.MoveHeadDegrees(0.1, 0.1, 0.1, 40);
     misty.MoveArmDegrees("right", 70, 10);
     misty.Pause(50);
     misty.MoveArmDegrees("left", 70, 10);
