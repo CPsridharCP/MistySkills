@@ -34,4 +34,3 @@ function circle_drive()
     circle_drive();
 }
 circle_drive();
-misty.DriveArc(0, 1.0, 2000, false);
