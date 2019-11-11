@@ -34,15 +34,15 @@ function _FaceRec(data)
     if (faceDetected == "unknown person") {
         misty.ChangeLED(255, 0, 0);
         misty.DisplayImage("e_Disgust.jpg");
-        misty.MoveArmDegrees("right", 70, 10);
+        misty.MoveArmDegrees("right", 70, 50);
         misty.Pause(50);
-        misty.MoveArmDegrees("left", 70, 10);
+        misty.MoveArmDegrees("left", 70, 50);
     } else if (faceDetected == "<Your Name>") {
         misty.ChangeLED(148, 0, 211);
         misty.DisplayImage("e_Joy.jpg");
-        misty.MoveArmDegrees("right", -80, 10);
+        misty.MoveArmDegrees("right", -80, 50);
         misty.Pause(50);
-        misty.MoveArmDegrees("left", -80, 10);
+        misty.MoveArmDegrees("left", -80, 50);
     }
 }
 
