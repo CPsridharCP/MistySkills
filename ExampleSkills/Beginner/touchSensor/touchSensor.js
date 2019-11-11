@@ -16,7 +16,7 @@
 
 // Misty Registers for event TouchSensor with Event Name "Touched"
 // You could change event name ("Touched") to anything you like while the event "TouchSensor" cannot be changed 
-misty.AddReturnProperty("Touched", "sensorPosition");
+misty.AddReturnProperty("Touched", "SensorPosition");
 misty.AddReturnProperty("Touched", "IsContacted");
 misty.RegisterEvent("Touched", "TouchSensor", 50 ,true);
 
