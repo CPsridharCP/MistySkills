@@ -16,4 +16,4 @@
 // URL of the audio file you would like to download and play on Misty
 const url = "http://www.moviesoundclips.net/download.php?id=2631&ft=wav"
 
-misty.SendExternalRequest("GET", url, null, null, "{}", true, true, "downloadAudio.wav");
+misty.SendExternalRequest("GET", url, null, null, null, true, true, "downloadAudio.wav");
