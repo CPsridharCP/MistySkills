@@ -17,5 +17,5 @@
 // Image is crropped at this point. Future update would include resizing image to fit the screen best.
 const url = "https://media-exp2.licdn.com/media-proxy/ext?w=800&h=800&hash=xXxEPkVYlg0hmaiylpH3FBKip8o%3D&ora=1%2CaFBCTXdkRmpGL2lvQUFBPQ%2CxAVta5g-0R6j3QIOyxEmrq2OoACm7QgQV6HZBU3bKmTyi8rdMT-rLISLLOTw4QFSZnZBxw"
 
-misty.SendExternalRequest("GET", url, null, null, "{}", true, true, "downloadImage.jpg");
+misty.SendExternalRequest("GET", url, null, null, null, true, true, "downloadImage.jpg");
 
