@@ -75,7 +75,7 @@ function lookAt(heading,robotYawAtStart,headYawAtStart)
     misty.Set("inProgress", true);
     
     // Head Motion 
-    var rawFinalHeadPose = misty.Get("headYaw")+(heading/2.0);
+    var rawFinalHeadPose = misty.Get("headYaw")+(heading);
     var actuateTo = rawFinalHeadPose;
     actuateTo = actuateTo <-45.0 ? -45.0 : actuateTo;
     actuateTo = actuateTo >45 ? 45.0 : actuateTo;
