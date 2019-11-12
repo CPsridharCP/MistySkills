@@ -15,10 +15,10 @@ misty.ChangeLED(140, 0, 255);
 misty.RegisterTimerEvent("keepActive", 18000, true);
 
 function _keepActive() {
-    misty.SendExternalRequest("POST", "https://ps.pndsn.com/publish/<publish-key>/<subscribe-key>/0/<pubnub-channel>/myCallback", null, null, "{}", false, false, "", "application/json");
+    misty.SendExternalRequest("POST", "https://ps.pndsn.com/publish/<publish-key>/<subscribe-key>/0/<pubnub-channel>/myCallback", null, null, null, false, false, "", "application/json");
 }
 
-misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<pubnub-channel>/0/0?uuid=<any-user-name>", null, null, "{}", false, false, "", "application/json", "_pubNubSubscribe");
+misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<pubnub-channel>/0/0?uuid=<any-user-name>", null, null, null, false, false, "", "application/json", "_pubNubSubscribe");
 
 function _pubNubSubscribe(data) {
     outputExt(data.Result.ResponseObject.Data);
@@ -93,7 +93,7 @@ function outputExt(dataIn) {
         misty.Pause(100);
         misty.PlayAudio("s_Awe3.wav", 100);
         misty.Set("pictureMode", true, false);
-        misty.MoveHeadPosition(0, 0, 0, 45);
+        misty.MoveHeadDegrees(0, 0, 0, 45);
         misty.Pause(3000);
         misty.DisplayImage("e_SystemFlash.jpg");
         misty.ChangeLED(255, 255, 255);
@@ -106,7 +106,7 @@ function outputExt(dataIn) {
         misty.DisplayImage("e_Joy2.jpg");
     }
     misty.Debug("Subscribed to Pubnub");
-    misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<pubnub-channel>/0/" + timestamp.toString() + "?uuid=<any-user-name>", null, null, "{}", false, false, "", "application/json", "_pubNubSubscribe");
+    misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<pubnub-channel>/0/" + timestamp.toString() + "?uuid=<any-user-name>", null, null, null, false, false, "", "application/json", "_pubNubSubscribe");
 }
 
 // ------------------------------ Click, Upload, Get URL -------------------------------
@@ -194,10 +194,10 @@ function _Touched(data) {
             misty.Pause(200);
             misty.PlayAudio("s_Love.wav");
             misty.ChangeLED(0, 255, 0);
-            misty.MoveHeadPosition(null, -4, null, 50);
+            misty.MoveHeadDegrees(null, -30, null, 50);
             misty.Pause(3000);
             misty.ChangeLED(140, 0, 255);
-            misty.MoveHeadPosition(0, 0, 0, 40);
+            misty.MoveHeadDegrees(0, 0, 0, 40);
             misty.DisplayImage("e_DefaultContent.jpg");
 
         } else {
@@ -205,7 +205,7 @@ function _Touched(data) {
             misty.Pause(200);
             misty.PlayAudio("s_Annoyance3.wav");
             misty.ChangeLED(255, 0, 0);
-            misty.MoveHeadPosition(0, 0, 0, 60);
+            misty.MoveHeadDegrees(0, 0, 0, 60);
             misty.Pause(2000);
             misty.ChangeLED(140, 0, 255);
             misty.DisplayImage("e_DefaultContent.jpg");
