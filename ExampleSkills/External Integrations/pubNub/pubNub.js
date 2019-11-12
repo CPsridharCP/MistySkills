@@ -24,11 +24,11 @@
 misty.RegisterTimerEvent("keepActive", 18000, true);
 function _keepActive() 
 {
-    misty.SendExternalRequest("POST", "https://ps.pndsn.com/publish/<publish-key>/<subscribe-key>/0/<your-channel-name>/myCallback", null, null, "{}", false, false, "", "application/json");
+    misty.SendExternalRequest("POST", "https://ps.pndsn.com/publish/<publish-key>/<subscribe-key>/0/<your-channel-name>/myCallback", null, null, null, false, false, "", "application/json");
 }
 
 // SUBSCRIBE
-misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<your-channel-name>/0/0?uuid=<your-channel-client-uuid>", null, null, "{}", false, false, "", "application/json");
+misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<your-channel-name>/0/0?uuid=<your-channel-client-uuid>", null, null, null, false, false, "", "application/json");
 
 function _SendExternalRequest(data)
 {
@@ -99,5 +99,5 @@ function outputExt(dataIn)
     misty.Debug(JSON.stringify(data));
     misty.Debug(latestData);
     misty.Debug(timestamp);
-    misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<your-channel-name>/0/" + timestamp.toString() + "?uuid=<your-channel-client-uuid>", null, null, "{}", false, false, "", "application/json");
+    misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<your-channel-name>/0/" + timestamp.toString() + "?uuid=<your-channel-client-uuid>", null, null, null, false, false, "", "application/json");
 }
