@@ -11,10 +11,10 @@ misty.ChangeLED(140, 0, 255);
 misty.RegisterTimerEvent("keepActive", 18000, true);
 
 function _keepActive() {
-    misty.SendExternalRequest("POST", "https://ps.pndsn.com/publish/<publish-key>/<subscribe-key>/0/<pubnub-channel>/myCallback", null, null, "{}", false, false, "", "application/json");
+    misty.SendExternalRequest("POST", "https://ps.pndsn.com/publish/<publish-key>/<subscribe-key>/0/<pubnub-channel>/myCallback", null, null, null, false, false, "", "application/json");
 }
 
-misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<pubnub-channel>/0/0?uuid=<any-user-name>", null, null, "{}", false, false, "", "application/json", "_pubNubSubscribe");
+misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<pubnub-channel>/0/0?uuid=<any-user-name>", null, null, null, false, false, "", "application/json", "_pubNubSubscribe");
 
 function _pubNubSubscribe(data) 
 {
@@ -139,7 +139,7 @@ function outputExt(dataIn)
 
     }
     misty.Debug("Subscribed to Pubnub");
-    misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<pubnub-channel>/0/" + timestamp.toString() + "?uuid=<any-user-name>", null, null, "{}", false, false, "", "application/json", "_pubNubSubscribe");
+    misty.SendExternalRequest("GET", "https://ps.pndsn.com/subscribe/<subscribe-key>/<pubnub-channel>/0/" + timestamp.toString() + "?uuid=<any-user-name>", null, null, null, false, false, "", "application/json", "_pubNubSubscribe");
 }
 
 function changeMood(mood) 
@@ -150,7 +150,7 @@ function changeMood(mood)
         misty.Pause(100);
         misty.PlayAudio("s_Joy2.wav", 100);
         misty.ChangeLED(0, 255, 0);
-        misty.MoveHeadPosition(-4, 0, 0, 50);
+        misty.MoveHeadDegrees(-45, 0, 0, 50);
         misty.MoveArmDegrees("right", -45, 50);
         misty.Pause(100);
         misty.MoveArmDegrees("left", -45, 50);
@@ -162,7 +162,7 @@ function changeMood(mood)
         misty.Pause(100);
         misty.PlayAudio("s_Sadness6.wav", 100);
         misty.ChangeLED(0, 0, 255);
-        misty.MoveHeadPosition(4, 0, 0, 20);
+        misty.MoveHeadDegrees(20, 0, 0, 20);
         misty.MoveArmDegrees("right", 90, 10);
         misty.Pause(100);
         misty.MoveArmDegrees("left", 90, 10);
@@ -173,7 +173,7 @@ function changeMood(mood)
         misty.Pause(100);
         misty.PlayAudio("s_Annoyance3.wav", 100);
         misty.ChangeLED(255, 0, 0);
-        misty.MoveHeadPosition(-1, 0, 0, 70);
+        misty.MoveHeadDegrees(0, 0, 0, 70);
         misty.MoveArmDegrees("right", 0, 60);
         misty.Pause(100);
         misty.MoveArmDegrees("left", -45, 60);
@@ -185,7 +185,7 @@ function changeMood(mood)
         misty.Pause(100);
         misty.PlayAudio("s_SleepySnore.wav", 100);
         misty.ChangeLED(40, 0, 155);
-        misty.MoveHeadPosition(-3, -4, 3, 20);
+        misty.MoveHeadDegrees(45, -35, 45, 20);
         misty.MoveArmDegrees("right", 90, 60);
         misty.Pause(100);
         misty.MoveArmDegrees("left", 90, 60);
@@ -197,12 +197,12 @@ function changeMood(mood)
         misty.Pause(100);
         misty.PlayAudio("s_DisorientedConfused4.wav", 100);
         misty.ChangeLED(255, 165, 0);
-        misty.MoveHeadPosition(-1, 0, 4, 70);
+        misty.MoveHeadDegrees(-10, 0, 50, 70);
         misty.MoveArmDegrees("right", 90, 60);
         misty.Pause(100);
         misty.MoveArmDegrees("left", -45, 60);
         misty.Pause(1000);
-        misty.MoveHeadPosition(-1, 0, -4, 20);
+        misty.MoveHeadDegrees(-10, 0, -50, 20);
 
     }
     misty.RegisterTimerEvent("resetMood", 5000, false);
