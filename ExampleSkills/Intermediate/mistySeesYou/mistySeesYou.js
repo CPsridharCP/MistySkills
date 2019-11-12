@@ -22,7 +22,7 @@ misty.MoveArmDegrees("left", 70, 10);
 
 function _look_around(repeat = true) 
 {
-    if (!misty.Get("faceInFOV")) misty.MoveHeadPosition(gaussianRandom(-5, 5), gaussianRandom(-5, 5), gaussianRandom(-5, 5), 300);
+    if (!misty.Get("faceInFOV")) misty.MoveHeadDegrees(gaussianRandom(-75, 25), gaussianRandom(-35, 35), gaussianRandom(-75, 75), 80);
     if (repeat) misty.RegisterTimerEvent("look_around", getRandomInt(5, 10) * 1000, false);
 }
 misty.RegisterTimerEvent("look_around", 10, false);
@@ -69,13 +69,13 @@ function _FaceDetect(data)
     misty.PlayAudio("s_Awe.wav", 100);
 
     // wave
-    misty.MoveArmDegrees("right", -80, 10);
+    misty.MoveArmDegrees("right", -80, 40);
     misty.Pause(50);
-    misty.MoveArmDegrees("left", -80, 10);
+    misty.MoveArmDegrees("left", -80, 40);
     misty.Pause(1000);
-    misty.MoveArmDegrees("right", 70, 10);
+    misty.MoveArmDegrees("right", 70, 40);
     misty.Pause(50);
-    misty.MoveArmDegrees("left", 70, 10);
+    misty.MoveArmDegrees("left", 70, 40);
 
     misty.RegisterTimerEvent("timeoutToNormal", 6000, false);
 }
