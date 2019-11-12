@@ -15,9 +15,9 @@
 
 
 misty.Debug("Homing Head and Arms");
-misty.MoveHeadPosition(0, 0, 0, 100);
-misty.MoveArmPosition("left", 0, 45); misty.Pause(50);
-misty.MoveArmPosition("right", 0, 45);
+misty.MoveHeadDegrees(0, 0, 0, 100);
+misty.MoveArmDegrees("left", 89, 45); misty.Pause(50);
+misty.MoveArmDegrees("right", 89, 45);
 misty.ChangeLED(148, 0, 211);
 
 
@@ -37,27 +37,27 @@ function _FaceRec(data)
         misty.DisplayImage("e_Disgust.jpg");
         misty.PlayAudio("s_DisorientedConfused5.wav");
         misty.TakePicture(false, "Intruder", 1200, 1600, false, true);
-        misty.MoveArmPosition("left", 5, 45);
+        misty.MoveArmDegrees("left", 30, 45);
         misty.Pause(50);
-        misty.MoveArmPosition("right", 5, 45);
+        misty.MoveArmDegrees("right", 30, 45);
     } 
     else if (faceDetected == "<Your Name>") 
     {
         misty.ChangeLED(148, 0, 211);
         misty.DisplayImage("e_Joy.jpg");
         misty.PlayAudio("s_Joy3.wav"); // This line could be replaced with an api to call google voics / mistys text to speech
-        misty.MoveArmPosition("left", 10, 45);
+        misty.MoveArmDegrees("left", -89, 45);
         misty.Pause(50);
-        misty.MoveArmPosition("right", 10, 45);
+        misty.MoveArmDegrees("right", -89, 45);
     } 
     else 
     {
         misty.ChangeLED(148, 0, 211);
         misty.DisplayImage("e_Surprise.jpg");
         misty.PlayAudio("s_Awe.wav");
-        misty.MoveArmPosition("left", 10, 45);
+        misty.MoveArmDegrees("left", -89, 45);
         misty.Pause(50);
-        misty.MoveArmPosition("right", 10, 45);
+        misty.MoveArmDegrees("right", 89, 45);
     }
 
     misty.RegisterTimerEvent("resumeDriving", 7000, false);
@@ -69,9 +69,9 @@ function _resumeDriving()
 {
     misty.DisplayImage("e_DefaultContent.jpg");
     misty.Set("Initiated", false);
-    misty.MoveArmPosition("left", 0, 45);
+    misty.MoveArmDegrees("left", 89, 45);
     misty.Pause(50);
-    misty.MoveArmPosition("right", 0, 45);
+    misty.MoveArmDegrees("right", 89, 45);
     misty.Drive(15, 20);
     misty.Pause(1000);
     registerFaceRec();
