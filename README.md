@@ -39,7 +39,7 @@ What would you build?
 |__ Advanced
    |
    |__ Turn to Sound
-   |__ Face Follow (needs rework)
+   |__ Follow Face
    |__ Simple Auto-Docking Experiments
    |__ Translate Language
 |
