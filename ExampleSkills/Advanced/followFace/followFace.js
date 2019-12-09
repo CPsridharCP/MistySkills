@@ -136,11 +136,11 @@ function _FaceRec(data)
 
     if (bearing != 0 && elevation != 0)
     {
-        misty.MoveHead(headPitch + ((pitchDown - pitchUp) / 33) * elevation, 0, headYaw + ((yawLeft - yawRight) / 66) * bearing, null, 8 / Math.abs(elevation));
+        misty.MoveHead(headPitch + ((pitchDown - pitchUp) / 33) * elevation, 0, headYaw + ((yawLeft - yawRight) / 66) * bearing, null, 7 / Math.abs(bearing));
     }
     else if (bearing != 0)
     {
-        misty.MoveHead( null, 0, headYaw + ((yawLeft - yawRight) / 66) * bearing, null, 8 / Math.abs(bearing));
+        misty.MoveHead( null, 0, headYaw + ((yawLeft - yawRight) / 66) * bearing, null, 7 / Math.abs(bearing));
     }
     else 
     {
