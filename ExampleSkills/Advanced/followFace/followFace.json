@@ -1,7 +1,7 @@
 {
   "Name": "followFace",
-  "UniqueId": "53aefb13-d6b1-44e7-9403-41aacbbaa35b",
-  "Description": "Misty Tries to follow a human face using built-in face detection",
+  "UniqueId": "cdf02cf8-12fc-4205-931e-f61716811d18",
+  "Description": "My skill is amazing!",
   "StartupRules": [
     "Manual",
     "Robot"
