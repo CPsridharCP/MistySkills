@@ -121,7 +121,7 @@ function _FaceRec(data)
         misty.DisplayImage("e_Love.jpg");
     }
     
-    const faceDetected = data.PropertyTestResults[0].PropertyParent; //PersonName 
+    const faceDetected = data.PropertyTestResults[0].PropertyParent.Label; //PersonName 
     const bearing = data.PropertyTestResults[0].PropertyParent.Bearing;  // -13 right and +13 left
     const elevation = data.PropertyTestResults[0].PropertyParent.Elevation;  // -13 up and +13 down
     misty.Debug(JSON.stringify(faceDetected));
