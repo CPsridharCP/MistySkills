@@ -29,7 +29,7 @@ function registerFaceRec()
 
 function _FaceRec(data) 
 {
-    var faceDetected = data.PropertyTestResults[0].PropertyParent.PersonName;
+    var faceDetected = data.PropertyTestResults[0].PropertyParent.Label;
 
     if (faceDetected == "unknown person") {
         misty.ChangeLED(255, 0, 0);
