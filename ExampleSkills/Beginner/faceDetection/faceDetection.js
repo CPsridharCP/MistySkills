@@ -20,7 +20,6 @@ misty.StartFaceDetection();
 
 function registerFaceDetection() 
 {
-    misty.AddPropertyTest("FaceDetect", "PersonName", "exists", "", "string");
     misty.RegisterEvent("FaceDetect", "FaceRecognition", 1000, true);
 }
 
