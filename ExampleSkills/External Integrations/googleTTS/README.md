@@ -1,3 +1,5 @@
+Thanks to Johnathan for drafting the readme
+
 ### Getting Access Token and Setting up GCP Project
 
 1. Create a new project in Google Cloud Platform (https://console.cloud.google.com/)
@@ -66,7 +68,6 @@ Open the skill's JS file from your local copy of this repository in a text edito
 function setCredentials() 
 {
     misty.Set('cloudFunctionAuthTokenURL', "YOUR_TRIGGER_URL_TO_GOOGLE_CLOUD_FUNCTION_THAT_PROVIDES_ACCESS_TOKEN", false);
-    misty.Set("GoogleCloudProjectID", "YOUR_GOOGLE_CLOUD_PROJECT_ID", false);
     misty.Set("langCodeForTTS", "en-US", false);
 }
 ```
@@ -74,8 +75,5 @@ function setCredentials()
 Update the calls on the `misty.Set()` method as follows:
 
 1. Set `"YOUR_TRIGGER_URL_TO_GOOGLE_CLOUD_FUNCTION_THAT_PROVIDES_ACCESS_TOKEN"` to the URL for your cloud function trigger.
-2. Set `"YOUR_GOOGLE_CLOUD_PROJECT_ID"` to the Project ID for your Dialogflow agent.
-3. **Optional:** Change the [language code for the text-to-speech API](https://cloud.google.com/text-to-speech/docs/voices) (set in the template to `"en-US"`) to have Misty speak in a different language.
-4. Save your changes.
-
-Readme Credits - Johnathan
+2. **Optional:** Change the [language code for the text-to-speech API](https://cloud.google.com/text-to-speech/docs/voices) (set in the template to `"en-US"`) to have Misty speak in a different language.
+3. Save your changes.
