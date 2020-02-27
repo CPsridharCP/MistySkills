@@ -51,7 +51,7 @@ What would you build?
    |__ Google Text To Speech
 </pre>
 
-## Example Skills
+## Apps
 <pre>
 |
 |__ Apps
