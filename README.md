@@ -55,5 +55,5 @@ What would you build?
 <pre>
 |
 |__ Apps
-    |__ 01 Drive Misty with Picture Feed from Desktop App on Local Network (not using AV streaming)
+    |__ Remotely Drive Misty from a desktop/mobile application
 </pre>
