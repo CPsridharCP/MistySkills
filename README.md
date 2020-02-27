@@ -50,3 +50,10 @@ What would you build?
    |__ Imgur
    |__ Google Text To Speech
 </pre>
+
+## Example Skills
+<pre>
+|
+|__ Apps
+    |__ 01 Drive Misty with Picture Feed from Desktop App on Local Network (not using AV streaming)
+</pre>
