@@ -42,7 +42,7 @@ What would you build?
    |__ Follow Face
    |__ Simple Auto-Docking Experiments
    |__ Translate Language
-   |__ Most Alive Dead Reckoning
+   |__ Most Alive Dead Reckoning [ NEW ]
 |
 |__ External Integration
    |
@@ -56,5 +56,5 @@ What would you build?
 <pre>
 |
 |__ Apps
-    |__ Remotely Drive Misty from a desktop/mobile application
+    |__ Remotely Drive Misty from a desktop/mobile application [ NEW ]
 </pre>
