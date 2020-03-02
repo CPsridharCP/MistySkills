@@ -1,0 +1,19 @@
+{
+  "Name": "MostAliveDeadReckoning",
+  "UniqueId": "529ca05f-09e8-4ff2-bd34-50c94e9db548",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
