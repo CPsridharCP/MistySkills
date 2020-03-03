@@ -1,0 +1,19 @@
+{
+  "Name": "wakeWordRecordAudio",
+  "UniqueId": "0f7bb14c-7f04-486e-92e1-2b257ef28eeb",
+  "Description": "My skill is amazing!",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 36000,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
