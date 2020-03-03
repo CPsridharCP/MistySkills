@@ -15,10 +15,11 @@
 
 misty.ChangeLED(0, 0, 255);
 misty.MoveHeadDegrees(-15.0, 0.0, 0.0, 70);
+// Audio Localization is available only if Misty is recording an Audio
+// so we just start recording audio.
 misty.StartRecordingAudio("deleteThis.wav");
 misty.Pause(3000);
 misty.ChangeLED(0, 255, 0);
-
 registerAudioLocalisation();
 
 function registerAudioLocalisation() 
