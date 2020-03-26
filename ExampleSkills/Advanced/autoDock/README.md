@@ -97,7 +97,7 @@ Note: Read the setting up procedure below before testing the code
 - For a successfull docking the glass plane your Misty's visor be look almost parallel 
 to the docking station wall that has the 4 passive IR reflectors. 
 - Make pitch value slightly higher to make Misty look slightly downwards (maybe +2).
-- Find the best PRY values that suit your robot and update ~line37 in the skill .js file.
+- Find the best PRY values that suit your robot and update ~line31 in the skill .js file.
 example: headCenterIdentified(6, 0, 4);
 Hint: Use moveHead option in the API explorer from SDK webpage to play around these values. 
 </pre>
