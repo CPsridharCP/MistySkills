@@ -22,12 +22,6 @@
 // _ = dock()     parameters:  (hasGuideRail? = bool_default_false)
 // _ = undock()   parameters:  None
 
-// Skip the next 4 lines and start writing your code
-try {
-    misty.UnregisterAllEvents();
-} catch (e) {}
-_ = initializeRequiredSensorCallbacks();
-
 // USER INPUT (more info in readme)
 // Enter Pitch, Roll, Yaw values in the same order for your robot that makes the glass plane
 // on Misty's visor look almost parallel to the docking station wall that has the 4 passive IR 
@@ -37,6 +31,12 @@ _ = initializeRequiredSensorCallbacks();
 headCenterIdentified(enter_pitch_value, enter_roll_value, enter_yaw_value);
 // Example:
 // headCenterIdentified(6, 0, 4);
+
+// Skip the next 4 lines and start writing your code
+try {
+    misty.UnregisterAllEvents();
+} catch (e) {}
+_ = initializeRequiredSensorCallbacks();
 
 // ADD YOUR CODE HERE - START ===================================
 
