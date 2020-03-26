@@ -1,5 +1,5 @@
 ## Docking and Circuit Video; Instructions
-[![autoDock](https://i.imgur.com/EwkCDI4.png)](https://www.youtube.com/watch?v=r-NxBS0ZEj0)
+[![autoDock](https://i.imgur.com/3qhCJNY.png)](https://www.youtube.com/watch?v=r-NxBS0ZEj0)
 [https://www.youtube.com/watch?v=r-NxBS0ZEj0](https://www.youtube.com/watch?v=r-NxBS0ZEj0)
 <pre>
 
