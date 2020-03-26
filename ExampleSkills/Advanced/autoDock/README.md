@@ -35,7 +35,7 @@ Parameter 3:
 - Forces drive, make sure it is safe for the robot when using it.
 example: _ = drive(1.0, slow = false, hazardFree = true); // drives 1m fast ignoring hazards
 
-Note: After every command Misty would attempt to self correct any unintetional angular offset
+Note: After every command Misty would attempt to self correct any unintentional angular offset
 </pre>
 
 ### Turn
@@ -53,7 +53,7 @@ Parameter 2:
 - Forces drive, make sure it is safe for the robot when using it.
 example: _ = turn(-30, hazardFree = true); // Turns right 30 degrees ignoring hazards
 
-Note: After every command Misty would attempt to self correct any unintetional angular offset
+Note: After every command Misty would attempt to self correct any unintentional angular offset
 </pre>
 
 ### Dock
