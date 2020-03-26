@@ -42,7 +42,8 @@ What would you build?
    |__ Follow Face
    |__ Simple Auto-Docking Experiments
    |__ Translate Language
-   |__ Most Alive Dead Reckoning [ NEW ]
+   |__ Most Alive Dead Reckoning 
+   |__ Auto Docking and Circuit Driving [ NEW ]
 |
 |__ External Integration
    |
