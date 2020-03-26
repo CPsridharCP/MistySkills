@@ -16,12 +16,12 @@
 
 // Misty Registers for event BumpSensor with Event Name "Bumped"
 // You could change event name ("Bumped") to anything you like while the event "BumpSensor" cannot be changed 
-misty.AddReturnProperty("Bumped", "sensorName");
-misty.AddReturnProperty("Bumped", "IsContacted");
-misty.RegisterEvent("Bumped", "BumpSensor", 50 ,true);
+misty.AddReturnProperty("BumpSensorMessage", "sensorName");
+misty.AddReturnProperty("BumpSensorMessage", "IsContacted");
+misty.RegisterEvent("BumpSensorMessage", "BumpSensor", 50 ,true);
 
 
-function _Bumped(data) 
+function _BumpSensorMessage(data) 
 {
     var sensor = data.AdditionalResults[0];
     var isPressed = data.AdditionalResults[1];
