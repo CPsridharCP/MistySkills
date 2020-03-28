@@ -1,17 +1,17 @@
 /*
-*    Copyright 2020 Misty Robotics, Inc.
-*    Licensed under the Apache License, Version 2.0 (the "License");
-*    you may not use this file except in compliance with the License.
-*    You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-*    Unless required by applicable law or agreed to in writing, software
-*    distributed under the License is distributed on an "AS IS" BASIS,
-*    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-*    See the License for the specific language governing permissions and
-*    limitations under the License.
-*/
+ *    Copyright 2020 Misty Robotics, Inc.
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
 
 // This skill enables you to drive Misty on a specific path and dock on the wirless charger. 
 // Most of the math is handled by the skill and you can directly jump in on writing code for your path.
@@ -46,7 +46,7 @@ _ = initializeRequiredSensorCallbacks();
 function loop() {
     _ = undock();
     _ = circuit();
-    _ = dock();
+    _ = dock(hasGuideRail = false);
     misty.Pause(3000);
     loop();
 }
@@ -79,7 +79,7 @@ function dock(hasGuideRail = false) {
 
     // Check if Misty can see docker or try to find it
     _ = findDocker();
-    
+
     // Turm to look at Docker with goal of makeing xOffset = 0
     _ = lookAtCharger();
 
@@ -95,11 +95,11 @@ function dock(hasGuideRail = false) {
 
     // Calculate inner angle between Misty Z axis and the XY plane of the docking station
     var angleInside = -1.0 * Math.sign(yRotation) * 90.0 + yRotation;
-    
+
     // Calculate Ground Plane distances along Docking Station X and Z axis to Misty
     var hDrive = Math.abs(xOffset) + 0.035; // 3.5cm correction accounts for offset of Misty Camera frame along X axis from the centre of Misty 
-    var vDrive = Math.abs(zOffset); 
-    
+    var vDrive = Math.abs(zOffset);
+
     // Debug
     // misty.Debug("X: " + xOffset.toFixed(2).toString() + " Z:" + zOffset.toFixed(2).toString() + " Yrot:" + yRotation.toFixed(2).toString() + " Look@:" + lookAtChargerOffset.toFixed(2).toString())
     misty.Debug("Angle Inside Cone");
@@ -116,12 +116,11 @@ function dock(hasGuideRail = false) {
         _ = turn(Math.sign(angleInside) * -90.0);
         _ = lookAtCharger();
     }
-    
+
     // Look down and Drive close to docking station 
     misty.MoveHead(misty.Get("HP") + 18, misty.Get("HR"), misty.Get("HY"), null, 1);
     misty.MoveHead(misty.Get("HP") + 18, misty.Get("HR"), misty.Get("HY"), null, 1);
     misty.MoveHead(misty.Get("HP") + 18, misty.Get("HR"), misty.Get("HY"), null, 1);
-    // _ = drive(vDrive - .20); // original dock code - works without guide rail
 
     // Mod - remove after gaining ability to get close
     if (vDrive - .50 > 0) {
@@ -133,18 +132,18 @@ function dock(hasGuideRail = false) {
     turnOffHazard();
 
     // Make a final correction and dock 
-    // _ = lookAtCharger(); // original dock code - works without guide rail
     misty.Drive(5, 0);
+    misty.Pause(100);
     misty.Drive(5, 0);
 
     _ = waitForContact();
     if (!hasGuideRail) {
         _ = alighToDock();
         misty.Pause(2000);
-        _ = drive(-0.06);
+        _ = drive(-0.07);
     }
     unregisterBumpSensors();
-    
+
     // Check of Charging 
     registerChargeStatus();
     if (!checkIfCharging()) {
@@ -155,7 +154,7 @@ function dock(hasGuideRail = false) {
 
     // If charge successful stop chager locating sensor
     misty.StopLocatingDockingStation();
-    
+
     // Turn on hazard system back to default
     turnOnHazard();
 
@@ -199,7 +198,7 @@ function waitForContact() {
 
     misty.Debug("Waiting for contact with Dockers");
     registerBumpSensors();
-    
+
     misty.Set("bumpFL", false, false);
     misty.Set("bumpFR", false, false);
 
@@ -249,9 +248,9 @@ function alighToDock() {
 function findDocker() {
 
     // Waits max 5 seconds to let sensor start and stream docker location data
-    misty.Debug("Checking if docker is in view");    
-    dockerInView = checkIfDockerInView(5); 
-    
+    misty.Debug("Checking if docker is in view");
+    dockerInView = checkIfDockerInView(5);
+
     // Docker is in view
     if (dockerInView) {
         // Wait for data to stabilize
@@ -287,7 +286,7 @@ function checkIfDockerInView(timeoutInSeconds = 5) {
             break;
         }
     }
-    return !(counter >= timeoutInSeconds); 
+    return !(counter >= timeoutInSeconds);
 }
 
 // A check to make sure we are not looking at old data
@@ -298,7 +297,7 @@ function secondsSinceDockerUpdate() {
 // The docker tracker measuremnts boounces with anomalies
 // This function waits until measurements fall inside the desired std deviation 
 function letDockerTrackerStabilize() {
-    
+
     _ = resetDockerParameters();
     misty.Debug("Waiting for tracker values to stabilize");
 
@@ -312,20 +311,22 @@ function letDockerTrackerStabilize() {
 
 // This function turns Misty to look straight at the docking station
 function lookAtCharger() {
-    
+
     _ = letDockerTrackerStabilize();
 
-    var scanRange = 50.0 // In degrees
-    var startHeading = misty.Get("robotYaw");
-    // (Math.abs( headingError(startHeading) ) < scanRange) ? 1.0 : -1.0 )
-
+    var offset = misty.Get("lookAtChargerOffset");
+    var direction = -1.0 * Math.sign(offset);
     do {
-        var offset = misty.Get("lookAtChargerOffset");
         misty.Debug(offset);
-        misty.Drive(0, Math.sign(offset) * 2 );
+        if (Math.sign(offset) != direction) {
+            misty.Drive(0, Math.sign(offset) * 2);
+            misty.Pause(100);
+            misty.Drive(0, Math.sign(offset) * 2);
+            direction = Math.sign(offset);
+        }
         misty.Pause(50);
+        offset = misty.Get("lookAtChargerOffset");
     }
-
     while (Math.abs(misty.Get("lookAtChargerOffset")) > 0.01); // 0.03 accounts for camera offset from the centre of the robot
     misty.Stop();
     misty.Pause(1000);
@@ -368,15 +369,15 @@ function _ChargerPose(data) {
     // xRotation = radToDeg(Math.atan2(arrayT[9], arrayT[10]));
     let yRotation = radToDeg(Math.atan2(-1.0 * arrayT[8], Math.sqrt((arrayT[0] * arrayT[0]) + (arrayT[4] * arrayT[4]))));
     // zRotation = radToDeg(Math.atan2(arrayT[4], arrayT[0]));
-    
+
     // Calculating offset in distance (unit m) of Misty's Camera frame alone X Y and Z axis of the docking startion coordinate frame
-    let xOffset = ((arrayT[12] + 0.03) * -arrayT[0]) + (arrayT[13] * -arrayT[1]) + (arrayT[14] * -arrayT[2]);// * Math.sin(DegToRad(90 - yRotation));
+    let xOffset = ((arrayT[12] + 0.03) * -arrayT[0]) + (arrayT[13] * -arrayT[1]) + (arrayT[14] * -arrayT[2]); // * Math.sin(DegToRad(90 - yRotation));
     // yOffset =  (arrayT[12] * -arrayT[4])         + (arrayT[13] * -arrayT[5]) + (arrayT[14] * -arrayT[6]);
-    let zOffset =  (arrayT[12] * -arrayT[8])         + (arrayT[13] * -arrayT[9]) + (arrayT[14] * -arrayT[10]) ;//* Math.sin(DegToRad(90 - xRotation));
+    let zOffset = (arrayT[12] * -arrayT[8]) + (arrayT[13] * -arrayT[9]) + (arrayT[14] * -arrayT[10]); //* Math.sin(DegToRad(90 - xRotation));
 
     // Calculate the X offset from the origing of the docking stations frame to Z axis of Misty's camera frame along a projected Misty Camera XY plane passing through 0,0,0 of Docker Frame
     // Used to make Misty straight at docking station 
-    let lookAtChargerOffset = -1.0 * (arrayT[12] + 0.035) * (arrayT[0] + arrayT[1] + arrayT[2]) * Math.sin(DegToRad(90 - yRotation)); 
+    let lookAtChargerOffset = -1.0 * (arrayT[12] + 0.035) * (arrayT[0] + arrayT[1] + arrayT[2]) * Math.sin(DegToRad(90 - yRotation));
 
     // Pull history of tracker measurementss
     var distanceHistory = JSON.parse(misty.Get("distanceHistory"))["data"];
@@ -400,13 +401,12 @@ function _ChargerPose(data) {
     if (stdDeviation(distanceHistory) < 0.02 && stdDeviation(yrotHistory) < 1.0 && zOffset != 0.0 && yRotation != 0.0) {
 
         // if (!misty.Get("dockerTrackerIsConfident")){
-            misty.Set("dockerTrackerIsConfident", true, false);
+        misty.Set("dockerTrackerIsConfident", true, false);
         // }
 
-    } else 
-    {
+    } else {
         // if (misty.Get("dockerTrackerIsConfident")) {
-            misty.Set("dockerTrackerIsConfident", false, false);
+        misty.Set("dockerTrackerIsConfident", false, false);
         // }
     }
 
@@ -416,7 +416,7 @@ function _ChargerPose(data) {
     misty.Set("zOffset", zOffset, false);
     misty.Set("yRotation", yRotation, false);
     misty.Set("lastDockerUpdate", (new Date()).toUTCString());
-    
+
     // DEBUG
     // misty.Debug("Conf: " + (stdDeviation(distanceHistory) < 0.02 && stdDeviation(yrotHistory) < 1.0).toString() + " Dist: " + stdDeviation(distanceHistory).toFixed(2).toString() + " Yrot: " + stdDeviation(yrotHistory).toFixed(2).toString());
     // misty.Debug("X: " + xOffset.toFixed(2).toString() + " Z:" + zOffset.toFixed(2).toString() + " Yrot:" + yRotation.toFixed(2).toString() + "Look@:" + lookAtChargerOffset.toFixed(2).toString());
@@ -458,8 +458,7 @@ function stdDeviation(array) {
 // on the head visor to be parallel with the charger wall with IR reflectors.
 // Enter the values for pitch roll yaw that best works to get Misty's head 
 // to look stright ahead.
-function headCenterIdentified(pitch, roll, yaw) 
-{
+function headCenterIdentified(pitch, roll, yaw) {
     misty.Set("HP", pitch, false);
     misty.Set("HR", roll, false);
     misty.Set("HY", yaw, false);
@@ -476,20 +475,16 @@ function bodyHomeState() {
 
 function initializeGlobalVariables() {
     _ = bodyHomeState();
-    misty.Set("encStartLeft", 0, false);
-    misty.Set("encStartRight", 0, false);
-    misty.Set("encLeft", 0, false);
-    misty.Set("encRight", 0, false);
-    misty.Set("robotYaw", 0.0, false);
-    misty.Set("robotYawVelocity", 0.0, false);
     misty.Set("hazardDetected", false, false);
     misty.Set("globalYawCorrection", 0.0, false);
+    misty.Set("IMURegistered", false, false);
+    misty.Set("encoderRegistered", false, false);
     _ = resetDockerParameters();
     return 0;
 }
 
 // Global parameters just specific to docking
-function resetDockerParameters()  {
+function resetDockerParameters() {
     misty.Set("dockerTrackerIsConfident", false, false);
     var tPlus10s = new Date();
     tPlus10s.setSeconds(tPlus10s.getSeconds() + 10);
@@ -498,8 +493,12 @@ function resetDockerParameters()  {
     misty.Set("zOffset", 0.0, false);
     misty.Set("yRotation", 0.0, false);
     misty.Set("lookAtChargerOffset", 0.0, false);
-    misty.Set("distanceHistory", JSON.stringify({"data": [0.0, 0.0, 0.0, 0.0, 0.0]}), false);
-    misty.Set("yrotHistory", JSON.stringify({"data": [0.0, 0.0, 0.0, 0.0, 0.0]}), false);
+    misty.Set("distanceHistory", JSON.stringify({
+        "data": [0.0, 0.0, 0.0, 0.0, 0.0]
+    }), false);
+    misty.Set("yrotHistory", JSON.stringify({
+        "data": [0.0, 0.0, 0.0, 0.0, 0.0]
+    }), false);
     misty.Set("bumpFL", false, false);
     misty.Set("bumpFR", false, false);
     misty.Set("isCharging", false, false);
@@ -508,8 +507,8 @@ function resetDockerParameters()  {
 
 function initializeRequiredSensorCallbacks() {
     _ = initializeGlobalVariables();
-    registerEncoder();
-    registerIMU();
+    // registerEncoder();
+    // registerIMU();
     registerHazard();
     registerChargerPoseMessage();
     misty.Pause(1000);
@@ -562,9 +561,13 @@ function _BatteryChargeMessage(data) {
 }
 
 function registerEncoder() {
+    misty.Set("encLeft", 100000, false);
+    misty.Set("encRight", -100000, false);
     misty.AddReturnProperty("DriveEncodersMessage", "LeftDistance");
     misty.AddReturnProperty("DriveEncodersMessage", "RightDistance");
     misty.RegisterEvent("DriveEncodersMessage", "DriveEncoders", 25, true);
+    misty.Set("encoderRegistered", true, false);
+    return 0;
 }
 
 function _DriveEncodersMessage(data) {
@@ -574,16 +577,30 @@ function _DriveEncodersMessage(data) {
     // misty.Debug(data.AdditionalResults[1]); //154 90 deg
 }
 
+function unregisterEncoder() {
+    misty.UnregisterEvent("DriveEncodersMessage");
+    misty.Set("encoderRegistered", false, false);
+}
+
 function registerIMU() {
+    misty.Set("robotYaw", 1000.0, false);
+    misty.Set("robotYawVelocity", 1000.0, false);
     misty.AddReturnProperty("IMUMessage", "Yaw");
     misty.AddReturnProperty("IMUMessage", "yawVelocity");
     misty.RegisterEvent("IMUMessage", "IMU", 25, true);
+    misty.Set("IMURegistered", true, false);
+    return 0;
 }
 
 function _IMUMessage(data) {
     misty.Set("robotYaw", data.AdditionalResults[0], false);
     misty.Set("robotYawVelocity", data.AdditionalResults[1], false);
     // misty.Debug(JSON.stringify(data.AdditionalResults[0]));
+}
+
+function unregisterIMU() {
+    misty.UnregisterEvent("IMUMessage");
+    misty.Set("IMURegistered", false, false);
 }
 
 function registerHazard() {
@@ -632,9 +649,42 @@ function screenHazard(eventMessage) {
     return hazardDetected;
 }
 
+function startSensorUpdate(encoder = true, imu = true) {
+    if (encoder) {
+        try {
+            if (!misty.Get("encoderRegistered")) _ = registerEncoder();
+            while (misty.Get("encLeft") == 100000 || misty.Get("encRight") == -100000) {
+                misty.Pause(100);
+            }
+        } catch (error) {
+            misty.Debug("Error registering to encoder");
+            return false;
+        };
+    }
+    if (imu) {
+        try {
+            if (!misty.Get("IMURegistered")) _ = registerIMU();
+            while (misty.Get("robotYaw") == 1000.0 || misty.Get("robotYawVelocity") == 1000.0) {
+                misty.Pause(100);
+            }
+        } catch (error) {
+            misty.Debug("Error registering to IMU");
+            return false;
+        }
+    }
+    return true;
+}
+
+function stopSensorUpdate(encoder = true, imu = true) {
+    if (encoder) unregisterEncoder();
+    if (imu) unregisterIMU();
+}
+
 // Main drive straight method
 function drive(distance, slow = false, hazardFree = false) {
-    
+
+    _ = startSensorUpdate(encoder = true, imu = true);
+
     // Turn off hazard if driving in hazard free mode
     if (hazardFree) {
         turnOffHazard();
@@ -673,6 +723,7 @@ function drive(distance, slow = false, hazardFree = false) {
         if (hazardFree) {
             turnOnHazard();
         }
+        stopSensorUpdate(encoder = true, imu = true);
         return true;
     } else {
         // Wait for hazard to clear
@@ -732,6 +783,8 @@ function performAngleCorrectionIfNecessary(desiredYaw) {
 // Main turn angle method
 function turn(angle, hazardFree = false) {
 
+    _ = startSensorUpdate(encoder = false, imu = true);
+
     // Turn off hazard if driving in hazard free mode
     if (hazardFree) {
         turnOffHazard();
@@ -758,6 +811,7 @@ function turn(angle, hazardFree = false) {
         if (hazardFree) {
             turnOnHazard();
         }
+        stopSensorUpdate(encoder = false, imu = true);
         return true;
     } else {
         // Wait for hazard to clear
