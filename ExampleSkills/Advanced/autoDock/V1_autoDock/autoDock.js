@@ -772,7 +772,7 @@ function getEncoderError(distance) {
 
 // Correct minor yaw drifts at the end of motion
 function performAngleCorrectionIfNecessary(desiredYaw) {
-    if (Math.abs(headingError(desiredYaw)) > 0.15) misty.Drive(0, Math.sign(headingError(desiredYaw)) * 1);
+    if (Math.abs(headingError(desiredYaw)) > 0.15) misty.Drive(0, Math.sign(headingError(desiredYaw)) * 2);
     while ((Math.abs(headingError(desiredYaw)) > 0.15)) misty.Pause(10);
     misty.Stop();
     misty.Pause(1000);
@@ -842,7 +842,7 @@ function checkIfTurnCompleted(targetRobotYaw, duration) {
         // Small enough error and cannot move - Brute Force correction
         else if (Math.abs(headingError(targetRobotYaw)) < 5 && misty.Get("robotYawVelocity") == 0) {
             misty.Pause(1000);
-            misty.Drive(0, Math.sign(headingError(targetRobotYaw)) * 1);
+            misty.Drive(0, Math.sign(headingError(targetRobotYaw)) * 2);
         } else {}
         // Hazard activated mid-way in turn
         if (misty.Get("hazardDetected")) {
