@@ -1,6 +1,7 @@
 # MistySkills
 
 Here are some template skills to get started with Misty !!!
+Also download the CheatSheet and keep it handy when programming Misty !!
 
 What would you build? 
 
