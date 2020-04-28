@@ -123,8 +123,8 @@ function dock(hasGuideRail = false) {
     misty.MoveHead(misty.Get("HP") + 18, misty.Get("HR"), misty.Get("HY"), null, 1);
 
     // Mod - remove after gaining ability to get close
-    if (vDrive - .50 > 0) {
-        _ = drive(vDrive - .50);
+    if (vDrive - .60 > 0) {
+        _ = drive(vDrive - .60);
         _ = lookAtCharger();
     }
 
@@ -136,20 +136,33 @@ function dock(hasGuideRail = false) {
     misty.Pause(100);
     misty.Drive(5, 0);
 
-    _ = waitForContact();
-    if (!hasGuideRail) {
-        _ = alighToDock();
-        misty.Pause(2000);
-        _ = drive(-0.07);
-    }
-    unregisterBumpSensors();
+    // Misty drives until the Bump Sensors hit the docking station wall
+    misty.Debug("Getting into Charger");
+    var hasMadeContact = waitForContact(new Date());
+    if (hasMadeContact) {
 
-    // Check of Charging 
-    registerChargeStatus();
-    if (!checkIfCharging()) {
-        unregisterChargeStatus();
+        misty.Debug("Has Made Coontact");
+        if (!hasGuideRail) {
+            _ = alighToDock(new Date());
+            misty.Pause(2000);
+            _ = drive(-0.07);
+        }
+        unregisterBumpSensors();
+
+        // Check of Charging 
+        registerChargeStatus();
+        if (!checkIfCharging()) {
+            unregisterChargeStatus();
+            misty.Debug("Reattempting Docking - Misty was not charging at the end of procedure");
+            _ = retryDocking(hasGuideRail);
+        }
+    }
+    // In case the Bump Sensors did not engage on contact with wall 
+    else {
+        misty.Debug("Re-Attempting Dock as Bump Sensors did not get engaged");
         _ = retryDocking(hasGuideRail);
     }
+
     unregisterChargeStatus();
 
     // If charge successful stop chager locating sensor
@@ -162,6 +175,7 @@ function dock(hasGuideRail = false) {
     misty.MoveHead(misty.Get("HP"), misty.Get("HR"), misty.Get("HY"), null, .5);
 
     misty.Debug("Docking Successful");
+
     return 0
 }
 
@@ -176,7 +190,8 @@ function undock() {
 
 // Misty reattempts to dock if charging check fails
 function retryDocking(hasGuideRail) {
-    misty.Debug("Reattempting Docking - Misty was not charging at the end of procedure");
+    misty.Stop();
+    misty.Pause(2000);
     _ = drive(-0.4, slow = true);
     _ = drive(-0.7);
     _ = dock(hasGuideRail);
@@ -194,7 +209,7 @@ function turnOffHazard() {
 // Docking - subfunction 
 // After final drive into the charging pad initiated, 
 // wait till one of the front bump sensor hit the wall of the charger 
-function waitForContact() {
+function waitForContact(startTime) {
 
     misty.Debug("Waiting for contact with Dockers");
     registerBumpSensors();
@@ -202,20 +217,27 @@ function waitForContact() {
     misty.Set("bumpFL", false, false);
     misty.Set("bumpFR", false, false);
 
+    var timedOut = false;
     // wait until contact is made
     while (!misty.Get("bumpFL") && !misty.Get("bumpFR")) {
         misty.Pause(500);
+        // Wait for 30 seconds to make contact or re-try docking 
+        if (Math.round((new Date() - startTime) / 1000) > 30) {
+            timedOut = true;
+            break;
+        }
     }
 
-    return 0;
+    return !timedOut;
 }
 
 // Docking - subfunction - without guide rail
 // Corrects alignment by making sure both bump sensors touch 
 // the wall of the charging pad
-function alighToDock() {
+function alighToDock(startTime) {
 
     misty.Debug("Aligning Misty to Docker");
+    var timedOut = false;
 
     if (misty.Get("bumpFL")) {
         misty.Debug("Forcing FR contact");
@@ -223,6 +245,10 @@ function alighToDock() {
         misty.DriveTrack(0, 100);
         while (!misty.Get("bumpFR")) {
             misty.Pause(500);
+            if (secondsPast(startTime) > 5) {
+                timedOut = true;
+                break;
+            }
         }
         misty.Stop();
         misty.Pause(1000);
@@ -232,13 +258,21 @@ function alighToDock() {
         misty.Debug("Forcing FL contact");
         while (!misty.Get("bumpFL")) {
             misty.Pause(500);
+            if (secondsPast(startTime) > 5) {
+                timedOut = true;
+                break;
+            }
         }
         misty.Stop();
         misty.Pause(1000);
     } else {
         misty.Debug("ERROR in recording intial contact with Dock");
     }
-    return 0;
+    return !timedOut;
+}
+
+function secondsPast(startTime) {
+    return Math.round((new Date() - startTime) / 1000)
 }
 
 // NEEDS WORK
@@ -418,7 +452,7 @@ function _ChargerPose(data) {
     misty.Set("lastDockerUpdate", (new Date()).toUTCString());
 
     // DEBUG
-    // misty.Debug("Conf: " + (stdDeviation(distanceHistory) < 0.02 && stdDeviation(yrotHistory) < 1.0).toString() + " Dist: " + stdDeviation(distanceHistory).toFixed(2).toString() + " Yrot: " + stdDeviation(yrotHistory).toFixed(2).toString());
+    // misty.Debug("Conf: " + (stdDeviation(distanceHistory) < 0.02 && stdDeviation(yrotHistory) < 1.0).toString());// + " Dist: " + stdDeviation(distanceHistory).toFixed(2).toString() + " Yrot: " + stdDeviation(yrotHistory).toFixed(2).toString());
     // misty.Debug("X: " + xOffset.toFixed(2).toString() + " Z:" + zOffset.toFixed(2).toString() + " Yrot:" + yRotation.toFixed(2).toString() + "Look@:" + lookAtChargerOffset.toFixed(2).toString());
     // misty.Debug("Translation -> X:"+xOffset.toFixed(2).toString() + " Y:" + yOffset.toFixed(2).toString() + " Z:" + zOffset.toFixed(2).toString());
     // misty.Debug("Rotation    -> R:" +zRotation.toFixed(2).toString() + " Y:" + yRotation.toFixed(2).toString() + " P:" + xRotation.toFixed(2).toString());
