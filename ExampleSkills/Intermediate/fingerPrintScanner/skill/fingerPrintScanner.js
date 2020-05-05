@@ -22,8 +22,33 @@ Copyright 2020 Misty Robotics Licensed under the Apache License, Version 2.0
 http://www.apache.org/licenses/LICENSE-2.0
 ***************************************************************************/
 
-// Misty takes a pictures, save it as photoSaveTest.jpg and displays it on screen
+// Uses Misty Arduino-Compatible Backpack and uses finger print scanner purchased from Sparkfun
 
-misty.PlayAudio("s_SystemCameraShutter.wav", 100);
-misty.TakePicture("photoSaveTest", 375, 812, true, true);
+misty.MoveHeadDegrees(0, 0, 0, 30);
+_subscribeToBackpackData();
 
+function _subscribeToBackpackData() 
+{
+    misty.ChangeLED(0, 0, 255);
+    misty.DisplayImage("e_DefaultContent.jpg");
+    misty.AddReturnProperty("backpackMessage", "SerialMessage");
+    misty.RegisterEvent("backpackMessage", "SerialMessage", 50, false);
+}
+
+function _backpackMessage(data) 
+{
+    var status = data.AdditionalResults[0].Message;
+    if (status == "PASS") 
+    {
+        misty.ChangeLED(0, 255, 0); 
+        misty.DisplayImage("e_Joy2.jpg");
+        misty.PlayAudio("accessGranted.wav", 100);
+     } 
+     else
+     {
+        misty.ChangeLED(255, 0, 0); 
+        misty.DisplayImage("e_JoyGoofy.jpg");
+        misty.PlayAudio("accessDenied.wav", 100);
+     }
+     misty.RegisterTimerEvent("subscribeToBackpackData", 3000, false);
+}
