@@ -27,7 +27,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 misty.ChangeLED(0, 0, 255);
 misty.Set("lookedAt",(new Date()).toUTCString());
-misty.MoveHeadDegrees(-15.0, 0.0, 0.0, 70);
+misty.MoveHead(-15.0, 0.0, 0.0, null, 1);
 misty.StartRecordingAudio("deleteThis.wav");
 misty.Pause(4000);
 misty.ChangeLED(0, 255, 0);
@@ -89,7 +89,7 @@ function lookAt(heading,robotYawAtStart,headYawAtStart)
     actuateTo = actuateTo <-45.0 ? -45.0 : actuateTo;
     actuateTo = actuateTo >45 ? 45.0 : actuateTo;
     misty.Debug(actuateTo.toString()+" <- Head to move to");
-    misty.MoveHeadDegrees(-15.0, 0.5, actuateTo, 50);
+    misty.MoveHead(-15.0, 0.5, actuateTo, null, 1);
     
     
     // Body Motion
@@ -111,7 +111,7 @@ function lookAt(heading,robotYawAtStart,headYawAtStart)
             if (currentAbsError/initialError <0.45 && !headResetDone)
             {
                 headResetDone = true;
-                misty.MoveHeadDegrees(-15.0, 0.0, 0.0,50);
+                misty.MoveHead(-15.0, 0.0, null,1);
             }
             else {}
             misty.Pause(10);
