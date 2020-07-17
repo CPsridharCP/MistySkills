@@ -13,7 +13,7 @@ http://console.cloud.google.com
 ### Step 4: Go to Credentials
 ![step4](https://i.imgur.com/Qnmx5jf.png)
 
-### Step 5: Create API KEY
+### Step 5: Create API KEY and Copy it to the skill's JSON
 ![step5](https://i.imgur.com/AIbrkbV.png)
 
 ## WARRANTY DISCLAIMER.
