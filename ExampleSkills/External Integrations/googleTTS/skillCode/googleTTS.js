@@ -22,78 +22,68 @@ Copyright 2020 Misty Robotics Licensed under the Apache License, Version 2.0
 http://www.apache.org/licenses/LICENSE-2.0
 ***************************************************************************/
 
-// Copy Paster the below code snippet into your JS skill to add Google Text to speech capability to your skill
-// usage: call function speak with the text as an argunent. Eg. speak("Testing Google Text to Speech API");
+// Usage: 
+// 1. In Skill - Call the function speakTheText(text) with the text as an argunent. 
+//    Eg. speakTheText("Testing Google Text to Speech API");
+// 2. Use the user-trigger-event to call the speakTheText() function from another skill or a REST API call made directly to this skill.
+//    Eg. POST <robot-ip-address>api/skills/event with payload 
+//        {
+//            "UniqueId": "a5899e62-89b0-4406-b071-4ab9bb2e653a",
+//            "EventName": "speakTheText",
+//            "Payload": {
+//                "text": "Your Text To Speak"
+//            }
+//        }
+// Requirements: 
+// 1. Get an API Key from Google Cloud Platform Console for TTS and update APIKEY_Google in the .JSON file
 
-_ = initializeAccessTokenUpdate();
-speak("Testing Google Text to Speech API");
+// TEST
+// speakTheText("test");
 
-// ======================= Set Your Credentials Here ==================
+// ==================== Send Text To Google ===========================
 
-function setCredentials() 
-{
-    misty.Set('cloudFunctionAuthTokenURL', "YOUR_TRIGGER_URL_TO_GOOGLE_CLOUD_FUNCTION_THAT_PROVIDES_ACCESS_TOKEN", false);
-    misty.Set("langCodeForTTS", "en-US", false);
-}
-
-// ==================== Update Auth Token =============================
-
-// Each Google Cloud Access Token expires after ~45 minutes.
-// We use this function to refresh tokens every 15 minutes.
-// Feel free to change the refresh rate as you see fit!
-
-function initializeAccessTokenUpdate()
-{
-    setCredentials();
-    misty.Set("googleAuthToken", "notUpdatedYet", false);
-    _getAuthToken();
-    misty.RegisterTimerEvent("getAuthToken", 60000 * 15, true);
-    while (misty.Get("googleAuthToken") == "notUpdatedYet") misty.Pause(500);
-    return 0;
-}
-
-function _getAuthToken() 
-{
-    misty.SendExternalRequest("POST", misty.Get("cloudFunctionAuthTokenURL"), null, null, null, false, false, null, "application/json", "_UpdateAuthToken");
-}
-
-function _UpdateAuthToken(data) 
-{
-    misty.Set("googleAuthToken", JSON.parse(data.Result.ResponseObject.Data).authToken, false);
-    misty.Debug("Updated Auth Token");
-}
-
-// ==================== Send Test To Google ===========================
-
-function speak(text)
-{
+function speakTheText(text) {
+    // TTS
     var arguments = JSON.stringify({
         'input': {
             'text': text
         },
         'voice': {
             'languageCode': "en-US",
-            'name': "en-US-Wavenet-F",
             'ssmlGender': "FEMALE"
         },
         'audioConfig': {
             'audioEncoding': "LINEAR16",
+
             "effectsProfileId": [
                 "small-bluetooth-speaker-class-device"
             ],
-            "pitch": 0,
+            "pitch": 0.7,
             "speakingRate": 0.91
         }
     });
 
-    misty.Debug("Sending Text Data to Google");
-    misty.SendExternalRequest("POST", "https://texttospeech.googleapis.com/v1beta1/text:synthesize", "Bearer", misty.Get("googleAuthToken"), arguments, false, false, null, "application/json", "_Base64In")
+    misty.SendExternalRequest("POST", "https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=" + _params.APIKEY_Google, null, null, arguments, false, false, null, "application/json", "_Base64In");
 }
 
-// ================= Base64 Audio Returned by Google ==================
+// ==================== Audio returned from Google ====================
 
-function _Base64In(data)
-{
-    misty.Debug("Saving and plaaying audio received from Google TTS API");
-    misty.SaveAudio("tts.wav", JSON.parse(data.Result.ResponseObject.Data).audioContent, true, true);
+function _Base64In(data) {
+    try {
+        misty.SaveAudio("TTS.wav", JSON.parse(data.Result.ResponseObject.Data).audioContent, true, true);
+    } catch (error) {
+        misty.Debug(JSON.stringify(data));
+    }
+}
+
+// ============= Enable REST API call directly to skill ================
+
+misty.RegisterUserEvent("speakTheText", true);
+
+function _speakTheText(data) {
+    try {
+        speakTheText(data.text);
+    } catch (error) {
+        misty.Debug("Cannot parse text input to speakTheText(); use this format { \"text\" : \"Your Text\"");
+    }   
 }
