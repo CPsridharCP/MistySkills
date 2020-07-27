@@ -111,7 +111,7 @@ function lookAt(heading,robotYawAtStart,headYawAtStart)
             if (currentAbsError/initialError <0.45 && !headResetDone)
             {
                 headResetDone = true;
-                misty.MoveHead(-15.0, 0.0, null,1);
+                misty.MoveHead(-15.0, 0.0, 0.0, null,2.5);
             }
             else {}
             misty.Pause(10);
