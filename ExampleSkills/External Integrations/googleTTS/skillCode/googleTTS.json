@@ -8,10 +8,10 @@
   ],
   "Language": "javascript",
   "BroadcastMode": "debug",
-  "TimeoutInSeconds": 31536000,
+  "TimeoutInSeconds": 36000,
   "CleanupOnCancel": true,
   "WriteToLog": false,
   "Parameters": {
-    "APIKEY_Google": "ENTER YOUR API KEY HERE"
+    "APIKEY_Google": "ENTER_YOUR_API_KEY_HERE"
   }
 }

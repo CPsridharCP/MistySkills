@@ -26,7 +26,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 // 1. In Skill - Call the function speakTheText(text) with the text as an argunent. 
 //    Eg. speakTheText("Testing Google Text to Speech API");
 // 2. Use the user-trigger-event to call the speakTheText() function from another skill or a REST API call made directly to this skill.
-//    Eg. POST <robot-ip-address>api/skills/event with payload 
+//    Eg. POST <robot-ip-address>/api/skills/event with payload 
 //        {
 //            "UniqueId": "a5899e62-89b0-4406-b071-4ab9bb2e653a",
 //            "EventName": "speakTheText",
@@ -82,6 +82,7 @@ misty.RegisterUserEvent("speakTheText", true);
 
 function _speakTheText(data) {
     try {
+        misty.Debug(JSON.stringify(data));
         speakTheText(data.text);
     } catch (error) {
         misty.Debug("Cannot parse text input to speakTheText(); use this format { \"text\" : \"Your Text\"");
