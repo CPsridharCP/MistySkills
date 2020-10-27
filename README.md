@@ -44,7 +44,8 @@ What would you build?
    |__ Simple Auto-Docking Experiments
    |__ Translate Language
    |__ Most Alive Dead Reckoning 
-   |__ Auto Docking and Circuit Driving [ NEW ]
+   |__ Auto Docking and Circuit Driving 
+   |__ Follow Human (Object Detection) [ NEW ]
 |
 |__ External Integration
    |
