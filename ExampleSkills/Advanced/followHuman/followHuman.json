@@ -1,0 +1,21 @@
+{
+  "Name": "followHuman",
+  "UniqueId": "c15cb286-4342-4017-98ea-2aefd1d647ce",
+  "Description": "My skill makes Misty follow a Person using Object Detection",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "SkillStorageLifetime": "LongTerm",
+  "TimeoutInSeconds": 2147483,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "forceHeadCalibration": false,
+    "turnInPlace": false,
+    "followHuman": false,
+    "silentMode" : false
+  }
+}
