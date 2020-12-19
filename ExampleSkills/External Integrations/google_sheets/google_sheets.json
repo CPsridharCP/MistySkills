@@ -1,0 +1,18 @@
+{
+  "Name": "google_sheets",
+  "UniqueId": "1d5686ad-214f-47e1-aafe-5051013ab1eb",
+  "Description": "Snippets to send and get data from google sheets using the sheets api.",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 2147483,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "sheet_id": "ENTER_SHEET_ID_HERE",
+    "access_token": "ENTER_ACCESS_TOKEN_HERE"
+  }
+}
