@@ -1,0 +1,19 @@
+{
+  "Name": "parsing_base64_json",
+  "UniqueId": "529f1816-de4a-4e93-8d06-a0b20632f871",
+  "Description": "Snippet function to parse base64 encoded JSON",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": 2147483,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
