@@ -5,7 +5,7 @@ Desktop apps build for Mac, Linux and Windows
 
 <pre>
 |
-|__ 01_localDrive (picture feed)
+|__ 01_localDrive (picture feed) (Build with Unity)
     |
     |__ Drive with ASDW and Arrow Keys
         Spacebar to brake
@@ -17,7 +17,16 @@ Desktop apps build for Mac, Linux and Windows
         For driving use Low Resolution/Latency
         Also uses local Text to Speech - Type text on top left text field and hit Speak 
 |
-|__ 02_localDriveVideoFeed (Soon.. )
+|__ 02_pythonTeleop (video feed) (Built with Python)
+    |
+    |__ Ability to scan for Misty's available on the same network and find its IP address
+        Video Feed is displayed on screen 
+        Use control panel to drive around and move Misty's head
+        Torch light can be toggled on and off
+        Hazards System's - Time of Flight sensors can be turrned off is needed
+        Local Text to Speech is availble to use
+        Suggestion to use RealVNC to teleop remote
+        Raspberry Pi Image to be provided for easy setup, so users can remote teleop with their RealVNC account
 |
 |__ 03_remoteDriveAudioVideoFeed (Soon.. )
 </pre>
