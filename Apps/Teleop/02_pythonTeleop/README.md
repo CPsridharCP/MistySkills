@@ -1,6 +1,15 @@
 ## Teleop with Python
 
-This code is to be run on an external computer that is on the same network as Misty.
+This code is to be run on an external computer (Linux, Mac, Windows) that is on the same network as Misty.
+
+[teleop_gif]: https://media.giphy.com/media/ZA1h6BAu99vEzkmFk6/giphy.gif
+![teleop_gif]
+
+#### UI Screenshots
+![findMisty](https://i.imgur.com/REA2zrY.png)
+![teleopInterface](https://i.imgur.com/lvR13UI.png)
+
+
 
 #### Enabling remote access:
 <pre>
