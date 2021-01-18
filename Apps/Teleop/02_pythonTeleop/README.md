@@ -12,11 +12,13 @@ This code is to be run on an external computer (Linux, Mac, Windows) that is on 
 
 
 #### Enabling remote access:
-<pre>
+
 The plan is to have RealVNC Server Installed in this exteal machine, so you could teleoperate Misty remote from a RealVNC Viewer.
+
 In an ideal use case, this external machine could be a Raspberry Pi plugged into the wall socket (no sceens / accessories needed).
+
 Raspberry Pi Image with all the setup and installtion done can be found here: _link_to_be_updated_
-</pre>
+
 
 ## Stand alone Setup-Instructions:
 
