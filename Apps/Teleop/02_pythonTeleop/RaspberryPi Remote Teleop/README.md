@@ -26,29 +26,29 @@ Go to https://www.realvnc.com/en/ and create a free account. This will let you u
 ### Step 3:
 Insert the flashed SD card, connnect mouse, keyboard and screen to a Raspberry Pi. Then power it on. You will boot to this screen.
 
-<img src="https://i.imgur.com/E2pwceB.png" width="500">
+<img src="https://i.imgur.com/E2pwceB.png" width="600">
 
 ### Step 4:
 Connect to the WiFi network that Misty is on / plug in an Ethernet cable into the Pi
 
-<img src="https://i.imgur.com/hjuwdg8.jpg" width="500">
+<img src="https://i.imgur.com/hjuwdg8.jpg" width="600">
 
 ### Step 5:
 Open VNC by clicking on the icon in the toolbar (top right of the screen) and click Sign In
 
-<img src="https://i.imgur.com/J0UZDXB.png" width="500">
+<img src="https://i.imgur.com/J0UZDXB.png" width="600">
 
 Enter the email address and password you used in step 2
 
-<img src="https://i.imgur.com/rPJEHev.png" width="500">
+<img src="https://i.imgur.com/rPJEHev.png" width="600">
 
 Give a name to this Pi (preferably its location)
 
-<img src="https://i.imgur.com/1kGkhoH.png" width="500">
+<img src="https://i.imgur.com/1kGkhoH.png" width="600">
 
 Click on Done to finish VNC setup
 
-<img src="https://i.imgur.com/1E6VmeZ.png" width="500">
+<img src="https://i.imgur.com/1E6VmeZ.png" width="600">
 
 #### This completes setup of the Raspberry Pi. Now you could disconnect the screen, reboot and remove mouse & keyboard. If you are using ethernet cable for internet, leave that plugged in.
 
@@ -77,12 +77,19 @@ Default password: raspberry
 
 ### Step 4:
 Now you will see the Raspberry Pi's Desktop.
-Phone in Landscape and Portrait mode. You can zoom in to fit the view better.
+
+Phone in Landscape mode. You can zoom in to fit the view better.
+
 <img src="https://i.imgur.com/wjA3Reb.png" width="500"> 
+
+Phone in Portrait mode. You can zoom in to fit the view better.
+
 <img src="https://i.imgur.com/CiiDZe4.png" width="400"> 
 
 ### Step 5:
 Place the curson on Misty Teleop icon in the desktop and double click it to start application. If you have set a static IP for Misty, you can enter that and click start. Else scan for Misty and select a Misty from the scan results. Scanning might take upto 15 seconds.
 
-#### Though connecting with phone is the easiest, the user experience is much better if connected through a laptop.
+![sessionImage](https://i.imgur.com/hb8Yr5A.png)
+
+### Though connecting with phone is the easiest, the user experience is much better using VNC viewer through a laptop/computer.
 
