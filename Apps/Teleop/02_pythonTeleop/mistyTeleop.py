@@ -111,7 +111,7 @@ def main():
 
     w, h = sg.Window.get_screen_size()
     
-    window = sg.Window("Misty Teleop", layout, location=(h/2, 0), default_button_element_size=(10,2), auto_size_buttons=False, keep_on_top=True)
+    window = sg.Window("Misty Teleop", layout, location=(0, 0), default_button_element_size=(10,2), auto_size_buttons=False, keep_on_top=True)
     
     functions_mapping = {
         "FORWARD" : drive_forward,
@@ -190,7 +190,7 @@ def initial_ip_scan_window():
     ]
 
     w, h = sg.Window.get_screen_size()
-    window = sg.Window("Misty Teleop", location=(h/2, 0), default_button_element_size=(15,2), auto_size_buttons=False, keep_on_top=True).Layout(layout)
+    window = sg.Window("Misty Teleop", location=(0, 0), default_button_element_size=(15,2), auto_size_buttons=False, keep_on_top=True).Layout(layout)
     
     misty_scanner_object = MistyScanner()
     scanning_in_progress = False
