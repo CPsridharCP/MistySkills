@@ -80,7 +80,7 @@ Phone in Landscape and Portrait mode. You can zoom in to fit the view better.
 <img src="https://i.imgur.com/CiiDZe4.png" width="400"> 
 
 ### Step 5:
-Double click Misty Teleop icon in the desktop to start application. If you have set a static IP for Misty, you can enter that and click start. Else scan for Misty and select a Misty from the scan results. Scanning might take upto 15 seconds.
+Place the curson on Misty Teleop icon in the desktop and double click it to start application. If you have set a static IP for Misty, you can enter that and click start. Else scan for Misty and select a Misty from the scan results. Scanning might take upto 15 seconds.
 
 #### Though connecting with phone is the easiest, the user experience is much better if connected through a laptop.
 
