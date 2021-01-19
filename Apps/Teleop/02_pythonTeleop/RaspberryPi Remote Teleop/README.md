@@ -1,6 +1,6 @@
 ## Using a Raspberry Pi to teleop Misty from Remote
 
-Raspberry Pi Image: https://s3.console.aws.amazon.com/s3/buckets/misty-teleop-rpi-image-v-0-1-0?region=us-west-1
+Raspberry Pi Image: https://misty-teleop-rpi-image-v-0-1-0.s3-us-west-1.amazonaws.com/MistyTeleop_RPi_V0_1_0.img
 
 The RPi image provided above conntains all the reqired libraries, python teleop code and some raspi-config pre setup and installed. Tested on RPi 4 and 3B+ models.
 
