@@ -9,15 +9,25 @@ This code is to be run on an external computer (Linux, Mac, Windows) that is on 
 ![findMisty](https://i.imgur.com/REA2zrY.png)
 ![teleopInterface](https://i.imgur.com/lvR13UI.png)
 
+## How can you use it?
 
+1. You can install everything in your computer and run it locally with Misty on the same network as your computer. Follow Stand alone setup instructions found below.
 
-#### Enabling remote access:
+2. You could setup a Raspberry Pi in your place and let that bridge connunication to Misty. This way you can remote-in over the internet. Follow Remote Teleop instructions found below.
+
+## Remote Teleop:
 
 The plan is to have RealVNC Server Installed in this exteal machine, so you could teleoperate Misty remote from a RealVNC Viewer.
 
 In an ideal use case, this external machine could be a Raspberry Pi plugged into the wall socket (no sceens / accessories needed).
 
-Raspberry Pi Image with all the setup and installtion done can be found here: _link_to_be_updated_
+Instruction for quick Raspberry Pi Setup: 
+
+https://github.com/CPsridharCP/MistySkills/blob/master/Apps/Teleop/02_pythonTeleop/RaspberryPi%20Remote%20Teleop/README.md
+
+Configured Raspberry Pi Image:
+
+https://misty-teleop-rpi-image-v-0-1-0.s3-us-west-1.amazonaws.com/MistyTeleop_RPi_V0_1_0.img1.amazonaws.com/MistyTeleop_RPi_V0_1_0.img
 
 
 ## Stand alone Setup-Instructions:
