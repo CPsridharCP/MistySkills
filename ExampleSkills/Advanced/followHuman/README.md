@@ -1,4 +1,6 @@
 ## Follow Human Skill (Object Detection)
+
+Click on Image to play video
 [![followHuman](https://i.imgur.com/qEvHDlP.png)](https://youtu.be/CBoTR4kb100)
 [https://youtu.be/CBoTR4kb100](https://youtu.be/CBoTR4kb100)
 
