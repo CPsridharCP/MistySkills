@@ -8,6 +8,7 @@ import PySimpleGUI as sg
 from findMisty import MistyScanner
 import argparse
 import requests
+from audioPlayer import AudioPlayer
 
 def drive_forward():
     cp_misty.drive(15,0)
@@ -64,9 +65,11 @@ def hazard_revert_to_defaults():
 def hazard_tof_off():
     cp_misty.update_hazard_system(False, True, False)
 
-def main():
+def main(args):
 
     lfs = LatestFrame('rtsp://' + cp_misty.ip + ':1936').start()
+    if args.audio_off:
+        AudioPlayer('rtsp://' + cp_misty.ip + ':1936').start()
     time.sleep(1.0)
 
     video_feed = [
@@ -275,6 +278,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--ip", help="Optional parameter. If provided skips scan for Misty and forces program to use this ip")
+    parser.add_argument("--audio-off", help="Optional Parameter. Turn off audio when present.", default=True, action='store_false')
     args = parser.parse_args()
 
     if args.ip:
@@ -299,6 +303,6 @@ if __name__ == "__main__":
     if cp_misty.start_av_streaming(url="rtspd:1936"):
         print("IN")
         time.sleep(2)
-        main()
+        main(args)
     else:
         print("OUT")
