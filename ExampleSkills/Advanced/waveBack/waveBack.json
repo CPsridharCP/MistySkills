@@ -1,0 +1,19 @@
+{
+  "Name": "waveBack",
+  "UniqueId": "072cc6a2-23b0-48d0-b64e-ff70e19a757d",
+  "Description": "Misty waves back if you wave at Misty",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "SkillStorageLifetime": "LongTerm",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": -1,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "forceHeadCalibration": false,
+    "silent_mode" : false
+  }
+}
