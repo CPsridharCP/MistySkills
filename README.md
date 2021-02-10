@@ -45,7 +45,8 @@ What would you build?
    |__ Translate Language
    |__ Most Alive Dead Reckoning 
    |__ Auto Docking and Circuit Driving 
-   |__ Follow Human (Object Detection) [ NEW ]
+   |__ Follow Human (Object Detection)
+   |__ Misty Waves Back (Human Pose Estimation + Object Detection) [ NEW ]
 |
 |__ External Integration
    |
