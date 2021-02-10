@@ -26,3 +26,8 @@ play with more keypoints
 - You can use the rear two bump sensors to increase/decrease volume.
 - In the JSON, set parameter "silent_mode" to true if you do not want Misty to play audio. 
 
+### For more info on just Object Detection and Human Pose Estimation:
+
+https://github.com/CPsridharCP/MistySkills/tree/master/ExampleSkills/Intermediate/objectDetection
+
+https://github.com/CPsridharCP/MistySkills/tree/master/ExampleSkills/Intermediate/humanPoseEstimation
