@@ -1,0 +1,19 @@
+{
+  "Name": "humanPoseEstimation",
+  "UniqueId": "b37ed4ec-e700-478b-8c0e-788432cc585f",
+  "Description": "Example skill shows how to use Misty's on board Human Pose Estimation",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": -1,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "Name": "objectDetection",
+  "UniqueId": "531e9665-2c2b-4b80-8304-179532b343cd",
+  "Description": "Example skill shows how to use Misty's on board Object Detector",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": -1,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
