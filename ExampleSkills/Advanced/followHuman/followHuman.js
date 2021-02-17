@@ -107,8 +107,8 @@ function _personDetection(data) {
 
         // Use this for human tracking
         // ... But for Human Tracking we need to make Misty look towards the face of the person - so we choose to follow the face of the person 
-        // assuming the face is located at 10% the ht of person, offset from the top of the bounding box
-        var Y_Error = (160.0 - 1.2 * data.PropertyTestResults[0].PropertyParent.ImageLocationTop + 0.2 * data.PropertyTestResults[0].PropertyParent.ImageLocationBottom ) / 160.0;
+        // assuming the face is located at 20% the ht of person, offset from the top of the bounding box
+        var Y_Error = (160.0 - 0.8 * data.PropertyTestResults[0].PropertyParent.ImageLocationTop - 0.2 * data.PropertyTestResults[0].PropertyParent.ImageLocationBottom ) / 160.0;
 
         // misty.Debug(X_Error);
         // misty.Debug(Y_Error);
