@@ -55,6 +55,8 @@ $ pip install numpy
 $ pip install opencv-python
 $ pip install PySimpleGUI
 $ pip install grequests
+$ pip install av
+$ conda install -c anaconda pyaudio
 </pre>
 ### Step 4: (3 mins)
 <pre>
@@ -68,7 +70,7 @@ $ chmod +x *.py
 
 #### If you already know the IP address of Misty:
 <pre>
-$ python mistyTeleop.py --ip <your_robot's IP>
+$ python mistyTeleop.py --ip < your_robot's IP >
 eg. python mistyTeleop.py --ip 10.0.0.237
 </pre>
 #### If you do not know the IP address of Misty:
@@ -80,4 +82,8 @@ After scanning is complete you will see a list of buttons one corressponding to 
 Click on the one Misty you would like to teleoperate and wait 5 seconds for the telepresence interface to kickin.
 </pre>
 
-
+#### If you want only video and no audio to play:
+<pre>
+eg. python mistyTeleop.py --ip 10.0.0.237 --audio-off
+eg. python mistyTeleop.py --audio-off
+</pre>
