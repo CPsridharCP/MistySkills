@@ -64,7 +64,7 @@ What would you build?
     |__ Remotely Drive Misty from a desktop/mobile application [ NEW ]
        |
        |__ Image Feed based Teleop built with Unity
-       |__ Video Feed based Teleop build with Python
+       |__ One way Audio-Video Feed based Teleop build with Python
 </pre>
 
 
