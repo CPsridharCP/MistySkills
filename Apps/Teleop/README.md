@@ -17,7 +17,7 @@ Desktop apps build for Mac, Linux and Windows
         For driving use Low Resolution/Latency
         Also uses local Text to Speech - Type text on top left text field and hit Speak 
 |
-|__ 02_pythonTeleop (video feed) (Built with Python)
+|__ 02_pythonTeleop (audio video feed) (Built with Python)
     |
     |__ Ability to scan for Misty's available on the same network and find its IP address
         Video Feed is displayed on screen 
