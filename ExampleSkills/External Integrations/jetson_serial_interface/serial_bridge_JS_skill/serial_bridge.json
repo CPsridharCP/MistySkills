@@ -1,0 +1,17 @@
+{
+  "Name": "serial_bridge",
+  "UniqueId": "a97e52b6-46d5-4cf9-9388-f99c31d3eac2",
+  "Description": "This skill bridges serial communication with Jetson",
+  "StartupRules": [
+    "Manual",
+    "Robot",
+    "Startup"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": -1,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+  }
+}
