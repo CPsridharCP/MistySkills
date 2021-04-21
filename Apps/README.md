@@ -4,14 +4,17 @@
 |__ Teleop - Remotely Drive Misty from a desktop/mobile application
     |
     |__ 01_localDrive (picture feed) (Build with Unity)
-</pre>    
-![](https://i.imgur.com/Vr2Ce0N.jpg)
-<pre>
     |
     |__ 02_pythonTeleop (video feed) (Built with Python)
 |
 |__ Enable Remote Access in 5mins with Ngrok (Instructions)
 </pre>
+
+Local Drive
+![](https://i.imgur.com/Vr2Ce0N.jpg)
+
+Python Teleop
+
 [teleop_gif]: https://media.giphy.com/media/ZA1h6BAu99vEzkmFk6/giphy.gif
 ![teleop_gif]
 
