@@ -54,6 +54,9 @@ What would you build?
    |__ Twilio SMS / MMS
    |__ Imgur
    |__ Google Text To Speech
+   |__ Google Sheets Data Upload / Download
+   |__ Parsing Base64 encoded JSON
+   |__ Serial Interfacing with Jetson [ NEW ]
 </pre>
 
 ## Apps
@@ -61,10 +64,12 @@ What would you build?
 |
 |__ Apps
     |
-    |__ Remotely Drive Misty from a desktop/mobile application [ NEW ]
+    |__ Remotely Drive Misty from a desktop/mobile application 
        |
        |__ Image Feed based Teleop built with Unity
-       |__ One way Audio-Video Feed based Teleop build with Python
+       |__ One way Audio-Video Feed based Teleop build with Python [ NEW ]
+    |
+    |__ Enable Remote Access Instantly with Ngrok [ NEW ]
 </pre>
 
 
