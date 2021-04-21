@@ -5,7 +5,7 @@
     |
     |__ 01_localDrive (picture feed) (Build with Unity)
     |
-    |__ 02_pythonTeleop (video feed) (Built with Python)
+    |__ 02_pythonTeleop (audio video feed) (Built with Python)
 |
 |__ Enable Remote Access in 5mins with Ngrok (Instructions)
 </pre>
