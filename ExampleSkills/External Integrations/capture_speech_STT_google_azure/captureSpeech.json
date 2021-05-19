@@ -1,0 +1,19 @@
+{
+  "Name": "captureSpeech",
+  "UniqueId": "6a87ba08-f35e-4f71-bd48-6107d798e1d7",
+  "Description": "Demonstrates Speech to Text Capabilities",
+  "StartupRules": [
+    "Manual",
+    "Robot"
+  ],
+  "Language": "javascript",
+  "BroadcastMode": "debug",
+  "TimeoutInSeconds": -1,
+  "CleanupOnCancel": true,
+  "WriteToLog": false,
+  "Parameters": {
+    "int": 10,
+    "double": 20.5,
+    "string": "twenty"
+  }
+}
