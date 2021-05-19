@@ -56,7 +56,8 @@ What would you build?
    |__ Google Text To Speech
    |__ Google Sheets Data Upload / Download
    |__ Parsing Base64 encoded JSON
-   |__ Serial Interfacing with Jetson [ NEW ]
+   |__ Serial Interfacing with Jetson
+   |__ Capture Speech + Speech to Text with Google/Azure [ NEW ]
 </pre>
 
 ## Apps
