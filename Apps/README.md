@@ -15,13 +15,19 @@
 
 </pre>
 
-Local Drive
-![](https://i.imgur.com/Vr2Ce0N.jpg)
+### Python Teleop
 
-Python Teleop
+<img src="https://media.giphy.com/media/ZA1h6BAu99vEzkmFk6/giphy.gif" width="750">
 
-[teleop_gif]: https://media.giphy.com/media/ZA1h6BAu99vEzkmFk6/giphy.gif
-![teleop_gif]
+### Misty Portal
+
+<img src="https://i.imgur.com/wQFMUeC.png" width="750"> 
+
+### Local Drive
+
+<img src="https://i.imgur.com/Vr2Ce0N.jpg" width="750">
+
+
 
 
 ## WARRANTY DISCLAIMER.
