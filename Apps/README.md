@@ -7,7 +7,7 @@
     |
     |__ 02_pythonTeleop (audio video feed) (Built with Python)
 |
-|__ Enable Remote Access in 5mins with Ngrok (Instructions)
+|__ Misty Portal - App that instantly gets Misty a global IP for Remote Access
 </pre>
 
 Local Drive
