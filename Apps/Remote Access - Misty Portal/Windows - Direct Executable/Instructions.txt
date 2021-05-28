@@ -1,0 +1,15 @@
+To run:
+
+1. Open 'Misty Portal' folder
+2. Scroll down to find 'Misty Portal' application(.exe) with the Icon
+3. Double click on 'Misty Portal' application(.exe) with the Icon to run application.
+
+ONLY THE FIRST TIME
+You may be prompted with a security alert - for Unverified Developer built application
+Click on More Info
+Now a new button "Run Anyway" will be displayed. Click that to sttart the application.
+
+Creating a Desktop Shortcut:
+1. Right cliking on the 'Misty Portal' application(.exe) and select 'Create Shortcut'
+2. This will create a new shortchut file as 'Misty Portal - Shortcut' 
+3. You can drag this shortcut to the Desktop and rename it as you like.  

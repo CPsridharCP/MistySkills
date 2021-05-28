@@ -1,0 +1,8 @@
+Double click icon to start applications 
+Drag drop the icon into Applications directory for Misty Portal to showup in Launcher
+
+ONLY THE FIRST TIME
+The first time you open the app, there may be an unverfied developer error.
+To allow the app to run follow thesee two steps.
+1. Choose Apple menu > System Preferences, click Security & Privacy, then click General.
+2. You can grant an exception for a blocked app by clicking the “Open Anyway” button in the General pane. This button is available for about an hour after you try to open the app.

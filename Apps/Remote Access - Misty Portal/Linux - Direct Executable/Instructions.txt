@@ -1,0 +1,15 @@
+To run:
+
+1. Open terminal
+Shortcut : ctrl + alt + t
+
+2. Navigate to the directory where you have placed the 'MistyPortal' executable file
+Example: If the file is in desktop
+$ cd 
+$ cd Desktop
+Example: If the file is in misty_portal folder inside Documents
+$ cd 
+$ cd Documents/misty_portal
+
+3. To start the program run this command
+$ ./MistyPortal 
