@@ -8,6 +8,12 @@
     |__ 02_pythonTeleop (audio video feed) (Built with Python)
 |
 |__ Misty Portal - App that instantly gets Misty a global IP for Remote Access
+    |
+    |__ Linux Executable
+    |__ Mac Executable
+    |__ Windows Executable
+    |__ Advanced user: Raw terminal instructions
+
 </pre>
 
 Local Drive
