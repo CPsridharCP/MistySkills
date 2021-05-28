@@ -1,4 +1,4 @@
-# Misty Portal
+# <img src="https://i.imgur.com/X1CuXOw.png" width="40">   Misty Portal 
 
 Get a global IP for Misty in less than 5 mins. The app uses Ngrok on the backend.
 
@@ -16,10 +16,10 @@ Now you will get a new IP for Misty that you can share with anyone on the Intern
 This IP can be used in command center, api exlorer, skillrunner, JS and C# SDK, all apps that Misty interfaces with except that this time the user does not need to be on the same network.
 
 ### Open Portal
-![open_portal](https://i.imgur.com/wQFMUeC.png)
+<img src="https://i.imgur.com/wQFMUeC.png" width="750"> 
 
 ### Close Portal
-![closse_portal](https://i.imgur.com/ZJsDctk.png)
+<img src="https://i.imgur.com/ZJsDctk.png" width="750"> 
 
 ### Helpful Links
 
