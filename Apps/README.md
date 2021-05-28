@@ -4,7 +4,6 @@
 |__ Teleop - Remotely Drive Misty from a desktop/mobile application
     |
     |__ 01_localDrive (picture feed) (Build with Unity)
-    |
     |__ 02_pythonTeleop (audio video feed) (Built with Python)
 |
 |__ Misty Portal - App that instantly gets Misty a global IP for Remote Access
