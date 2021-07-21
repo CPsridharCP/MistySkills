@@ -25,28 +25,30 @@ http://www.apache.org/licenses/LICENSE-2.0
 // Misty turn to look at the person who is speaking
 // It is intended to be slow and not super responsive - Feel free to play with latencey and make it faster 
 
-misty.ChangeLED(0, 0, 255);
-misty.Set("lookedAt",(new Date()).toUTCString());
-misty.MoveHead(-15.0, 0.0, 0.0, null, 1);
-misty.StartRecordingAudio("deleteThis.wav");
-misty.Pause(4000);
-misty.ChangeLED(0, 255, 0);
+function start() {
+    misty.ChangeLED(0, 0, 255);
+    misty.Set("lookedAt",(new Date()).toUTCString());
+    misty.MoveHead(-15.0, 0.0, 0.0, null, 1);
+    misty.StartRecordingAudio("deleteThis.wav");
+    misty.Pause(4000);
+    misty.ChangeLED(0, 255, 0);
+    if (_params.turn_off_hazards) misty.UpdateHazardSettings(false, false, false, null, null, false, 0);
 
+    // Setting some global variables as normal var <variable_name> cannot be accessed in event callbacks
+    misty.Set("headYaw", 0.0); 
+    misty.Set("robotYaw", 0.0); 
 
-// Setting some global variables as normal var <variable_name> cannot be accessed in event callbacks
-misty.Set("headYaw", 0.0); 
-misty.Set("robotYaw", 0.0); 
+    // Used for smoothening data - barely helps :D - Gotta do more layers for better softening
+    misty.Set("1b", 0.0);
+    misty.Set("2b",0.0);
 
-// Used for smoothening data - barely helps :D - Gotta do more layers for better softening
-misty.Set("1b", 0.0);
-misty.Set("2b",0.0);
+    misty.Set("inProgress", false);
 
-misty.Set("inProgress", false);
-
-registerAudioLocalisation();
-registerIMU();
-registerActuatorPosition();
-
+    registerAudioLocalisation();
+    registerIMU();
+    registerActuatorPosition();
+}
+start()
 
 // -------------------------------------- Audio Localization --------------------------------------------------
 

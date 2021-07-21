@@ -9,8 +9,6 @@
 	"CleanupOnCancel": false,
 	"WriteToLog": false,
 	"Parameters": {
-		"int":10,
-		"double":20.5,
-		"string":"twenty"
+		"turn_off_hazards":true
 	}
 }
