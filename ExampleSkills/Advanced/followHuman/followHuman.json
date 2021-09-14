@@ -9,13 +9,14 @@
   "Language": "javascript",
   "BroadcastMode": "debug",
   "SkillStorageLifetime": "LongTerm",
-  "TimeoutInSeconds": 2147483,
+  "TimeoutInSeconds": -1,
   "CleanupOnCancel": true,
   "WriteToLog": false,
   "Parameters": {
     "forceHeadCalibration": false,
-    "turnInPlace": false,
+    "turnInPlace": true,
     "followHuman": false,
-    "silentMode" : false
+    "silentMode" : true,
+    "turn_off_hazards" : false
   }
 }

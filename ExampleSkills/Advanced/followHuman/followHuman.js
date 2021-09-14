@@ -50,6 +50,7 @@ misty.Debug("Follow Human Skill Started");
 function start() {
     registerHeadPitch();
     registerHeadYaw();
+    if (_params.turn_off_hazards) misty.UpdateHazardSettings(false, false, false, null, null, false, 0);
     registerSystemHazardNotification();
     // misty.Set("nowTracking", -1, false);
     // registerRobotYaw();
